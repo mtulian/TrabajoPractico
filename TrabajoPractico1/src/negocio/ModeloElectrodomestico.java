@@ -7,7 +7,7 @@ import entidades.Electrodomestico;
 //import Presentacion.frmPrincipal;
 public class ModeloElectrodomestico extends AbstractTableModel{
 		private static final long serialVersionUID = 1L;
-		String[] encabezados = {"ID", "Precio Base","Color","Consumo","Peso"};//mismo nosmbres que la bd
+		String[] encabezados = {"Precio Base","Color","Consumo","Peso"};//mismo nosmbres que la bd
 		ArrayList<Electrodomestico> elec;
 		@Override
 		public int getColumnCount() {
@@ -15,6 +15,7 @@ public class ModeloElectrodomestico extends AbstractTableModel{
 		}
 		public ModeloElectrodomestico(){
 			//ventas = FrmPrincipal.ventas;
+			elec = ElectrodomesticoL.getLista();
 		}
 		@Override
 		public int getRowCount() {
@@ -35,6 +36,7 @@ public class ModeloElectrodomestico extends AbstractTableModel{
 				break;
 				case 3: retorno = String.valueOf(ele.getPeso());
 				break;
+				default:break;
 	/*			case 4: {
 					int cantidad = ele.getCantidad();
 					double precio = elec.precioEntrada;
