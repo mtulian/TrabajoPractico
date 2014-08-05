@@ -167,17 +167,16 @@ public class FrmAlta extends JDialog {
 				float pe = Float.parseFloat(txtPeso.getText());
 				switch(tipo)
 				{
-					//float p,String c,char ce,float pe,float res,boolean sinto
-					case 1:{ 
-							 float res = Float.parseFloat(txtResolucion.getText());
-							 boolean sinto = cbxSintonizador.isSelected();
-							 nuevoElectro = new Television(p,c,ce,pe,res,sinto);
-							 break;
-							}
 					//float p,String c,char ce,float pe,float carga
-					case 2:{ float carga = Float.parseFloat(txtCarga.getText());
-							nuevoElectro = new Lavarropas(p,c,ce,pe,carga); 
-							break;
+					case 1:{ float carga = Float.parseFloat(txtCarga.getText());
+					nuevoElectro = new Lavarropas(p,c,ce,pe,carga); 
+					break;
+							}
+					//float p,String c,char ce,float pe,float res,boolean sinto
+					case 2:{ float res = Float.parseFloat(txtResolucion.getText());
+					 boolean sinto = cbxSintonizador.isSelected();
+					 nuevoElectro = new Television(p,c,ce,pe,res,sinto);
+					 break;
 							}
 					//float p,String c,char ce,float pe,
 					default:{nuevoElectro = new Electrodomestico(p,c,ce,pe); break;}

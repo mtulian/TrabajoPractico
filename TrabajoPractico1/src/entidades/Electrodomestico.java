@@ -2,7 +2,9 @@ package entidades;
 public class Electrodomestico {
 	
 //campos
+private int id;
 private float precioBase;
+private static int ultimoID = 0;
 private String color; // blanco,negro,rojo,azul y gris
 private String consumoEnergetico;//letras de la A a la F
 private float peso;
@@ -25,21 +27,33 @@ public String getConsumoEnergético() {
 public float getPeso() {
 	return peso;
 }
-
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
+}
 //constructores
+public void asignaID(){
+	id = ultimoID;
+	ultimoID += 1;
+}
 public Electrodomestico() {
+	asignaID();
 	color = c_color;
 	consumoEnergetico = c_consumo;
 	precioBase = c_precio;
 	peso = c_peso;
 }
 public Electrodomestico(float precio,float peso){
+	asignaID();
 	this.peso = peso;
 	this.precioBase = precio;
 	color = c_color;
 	consumoEnergetico = c_consumo;
 }
 public Electrodomestico(float p,String c,String ce,float pe){
+	asignaID();
 	precioBase = p;
 	comprobarColor(c);
 	comprobarConsumoEnergetico(ce);
@@ -95,5 +109,6 @@ public float precioFinal(){
 	}
 	return p;
 }
+
 
 }
