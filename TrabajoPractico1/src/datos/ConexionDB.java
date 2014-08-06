@@ -4,8 +4,8 @@ package datos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -20,10 +20,10 @@ public class ConexionDB {
       
         try
         {
-            Class.forName("com.mysql.jdbc.Driver");
-            String servidor = "jdbc:mysql://localhost/DBVentas";
-            String usuarioDB="root";
-            conexion= DriverManager.getConnection(servidor,usuarioDB,"");
+        	  Class.forName("com.mysql.jdbc.Driver");
+              String servidor = "jdbc:mysql://localhost/TrabajoPractico";
+              String usuarioDB="root";
+              conexion= DriverManager.getConnection(servidor,usuarioDB,"");
         }
         catch(ClassNotFoundException ex)
         {
@@ -45,4 +45,5 @@ public class ConexionDB {
             return conexion;
         }
     }
+    
 }

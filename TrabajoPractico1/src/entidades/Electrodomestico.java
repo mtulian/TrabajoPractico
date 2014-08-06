@@ -60,7 +60,13 @@ public Electrodomestico(float p,String c,String ce,float pe){
 	peso = pe;
 	
 }
-
+public Electrodomestico(int id,float p,String c,String ce,float pe){
+	this.id = id;
+	precioBase = p;
+	comprobarColor(c);
+	comprobarConsumoEnergetico(ce);
+	peso = pe;
+}
 //metodos
 private void comprobarConsumoEnergetico(String letra){
 

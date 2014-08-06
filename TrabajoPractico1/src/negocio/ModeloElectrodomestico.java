@@ -5,10 +5,14 @@ import java.util.List;
 
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
+
 import entidades.*;
 
 public class ModeloElectrodomestico implements TableModel{
-	public List<Electrodomestico> elec = ElectrodomesticoL.getLista();
+	//public List<Electrodomestico> elec = ElectrodomesticoL.getLista();
+	//Para coneccion a bd
+	//public List<Electrodomestico> elec = ElectrodomesticoL.getall();
+	public List<Electrodomestico> elec = new ElectrodomesticoL().getLista();
 	public List<String> nombreColumnas = new ArrayList<String>();
 	public List<TableModelListener> tableModelListeners = new ArrayList<TableModelListener>();
 	public ModeloElectrodomestico() {
@@ -17,9 +21,10 @@ public class ModeloElectrodomestico implements TableModel{
 		nombreColumnas.add("Color");
 		nombreColumnas.add("Consumo");
 		nombreColumnas.add("Peso");
-		//nombreColumnas.add("Resolucion");
-		//nombreColumnas.add("Sintonizador");
+		//Columnas que faltarian apra que se agreguen todos los atributos
 		//nombreColumnas.add("Carga");
+		//nombreColumnas.add("Resolucion");
+		//nombreColumnas.add("Sintonizador");		
 	}
 	@Override
 	public Class<?> getColumnClass(int arg0) {
@@ -60,9 +65,9 @@ public class ModeloElectrodomestico implements TableModel{
 				case 2: return e.getColor();
 				case 3: return e.getConsumoEnergético();
 				case 4: return e.getPeso();
-				//case 5: return ((Television)e).getResolucion();
-				//case 6: return ((Television)e).isSintonizadorTDT();
-				//case 7: return ((Lavarropas)e).getCarga();
+				//case 5: return ((Television) e).getResolucion();
+				//case 6: return ((Television) e).isSintonizadorTDT();
+				//case 7: return ((Lavarropas) e).getCarga();
 			}
 		}
 		return null;
