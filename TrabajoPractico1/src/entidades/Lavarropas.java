@@ -31,5 +31,10 @@ public float precioFinal(){
 	}
 	return p;
 }
+//Generado para la tabla
+/*
+public void setCarga(float carga) {
+	this.carga = carga;
+}*/
 
 }

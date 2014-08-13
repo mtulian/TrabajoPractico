@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import negocio.ElectrodomesticoL;
+import negocio.ElectrodomesticoLogic;
 import entidades.Electrodomestico;
 import entidades.Lavarropas;
 import entidades.Television;
@@ -33,7 +33,7 @@ public class FrmAlta extends JDialog {
 	private JLabel lblCarga;
 	private JCheckBox cbxSintonizador;
 	private JLabel lblResolucion;
-	private int tipo=0; // {0-Electrodomestico, 1-Television, 2-Lavarropa}
+	private int tipo= 0; // {0-Television, 1-Lavarropa}
 	private JComboBox cbxColor;
 	private JComboBox cbxConsumo;
 	/**
@@ -75,9 +75,16 @@ public class FrmAlta extends JDialog {
 		txtResolucion.setText("");
 		cbxSintonizador.setSelected(false);
 	}
+	private void arrancar(boolean bool){
+		txtPeso.setEnabled(bool);
+		txtPrecio.setEnabled(bool);
+		cbxColor.setEnabled(bool);;
+		cbxConsumo.setEnabled(bool);;
+	}
 	//Va a servir para verificar que los campos esten todos ingresados
 	//En el caso de que alguno no se halla ingresado abra que mostrar un cartel
 	//Que diga tal campo debe ser ingresado
+	//falta implementar
 	public void valida(int i){
 		switch(i){
 		case 1:break;
@@ -98,16 +105,18 @@ public class FrmAlta extends JDialog {
 		cbxTipo.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				Limpiar();
+				arrancar(true);
 				String eleccion = (String)cbxTipo.getSelectedItem();
 				switch(eleccion){
-				case "Electrodomestico": {activaLava(false);activaTele(false); tipo = 0;  break;}
 				case "Lavarropa":  {activaLava(true);activaTele(false); tipo = 1; break;}
-				case "Television": {activaLava(false);activaTele(true); tipo = 2; break;}
-				default: break;
+				case "Television": {activaLava(false);activaTele(true); tipo = 0; break;}
+				default: 
+					break;//Falta un mensaje que diga tiene que seleccionar una opción
 				}
 			}
 		});
-		cbxTipo.setModel(new DefaultComboBoxModel(new String[] {"Electrodomestico", "Television", "Lavarropa"}));
+		//"Electrodomestico"
+		cbxTipo.setModel(new DefaultComboBoxModel(new String[] {"Television", "Lavarropa"}));
 		cbxTipo.setBounds(78, 14, 139, 20);
 		getContentPane().add(cbxTipo);
 		
@@ -160,29 +169,28 @@ public class FrmAlta extends JDialog {
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Electrodomestico nuevoElectro;
+				
 				float p = Float.parseFloat(txtPrecio.getText());
 				String c = (String)cbxColor.getSelectedItem();
 				String ce = (String)cbxConsumo.getSelectedItem();
 				float pe = Float.parseFloat(txtPeso.getText());
 				switch(tipo)
 				{
-					//float p,String c,char ce,float pe,float carga
-					case 1:{ float carga = Float.parseFloat(txtCarga.getText());
-					nuevoElectro = new Lavarropas(p,c,ce,pe,carga); 
-					break;
+					case 1:{ 
+						float carga = Float.parseFloat(txtCarga.getText());
+						Lavarropas nuevoElectro = new Lavarropas(p,c,ce,pe,carga); 
+						ElectrodomesticoLogic.addOne(nuevoElectro);
+						break;
 							}
-					//float p,String c,char ce,float pe,float res,boolean sinto
-					case 2:{ float res = Float.parseFloat(txtResolucion.getText());
-					 boolean sinto = cbxSintonizador.isSelected();
-					 nuevoElectro = new Television(p,c,ce,pe,res,sinto);
-					 break;
-							}
-					//float p,String c,char ce,float pe,
-					default:{nuevoElectro = new Electrodomestico(p,c,ce,pe); break;}
-				}
+					default: {
+						float res = Float.parseFloat(txtResolucion.getText());
+						boolean sinto = cbxSintonizador.isSelected();
+						Television nuevoElectro = new Television(p,c,ce,pe,res,sinto);
+						ElectrodomesticoLogic.addOne(nuevoElectro);
+						break;
+						}
 						
-				ElectrodomesticoL.getLista().add(nuevoElectro);
+				}
 				Limpiar();
 				
 			}
@@ -212,18 +220,15 @@ public class FrmAlta extends JDialog {
 		panelPrincipal.add(txtCarga);
 		
 		lblResolucion = new JLabel("Resoluci\u00F3n:");
-		lblResolucion.setVisible(false);
 		lblResolucion.setBounds(216, 17, 73, 14);
 		panelPrincipal.add(lblResolucion);
 		
 		txtResolucion = new JTextField();
-		txtResolucion.setVisible(false);
 		txtResolucion.setColumns(10);
 		txtResolucion.setBounds(287, 14, 117, 20);
 		panelPrincipal.add(txtResolucion);
 		
 		cbxSintonizador = new JCheckBox("Sintonizador");
-		cbxSintonizador.setVisible(false);
 		cbxSintonizador.setBounds(270, 40, 134, 30);
 		panelPrincipal.add(cbxSintonizador);
 		

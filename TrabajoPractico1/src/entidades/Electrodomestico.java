@@ -115,6 +115,24 @@ public float precioFinal(){
 	}
 	return p;
 }
-
+@Override
+	public String toString() {
+		return id+"-"+String.valueOf(precioBase)+" "+color+" "+consumoEnergetico+" " +peso;
+	}
+//Agregados en ultima version para tabla
+/*
+public void setPrecioBase(float precioBase) {
+	this.precioBase = precioBase;
+}
+public void setColor(String color) {
+	this.color = color;
+}
+public void setConsumoEnergetico(String consumoEnergetico) {
+	this.consumoEnergetico = consumoEnergetico;
+}
+public void setPeso(float peso) {
+	this.peso = peso;
+}
+*/
 
 }
