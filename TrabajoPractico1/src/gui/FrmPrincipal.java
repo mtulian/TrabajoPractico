@@ -46,7 +46,7 @@ public class FrmPrincipal extends JFrame {
 	public FrmPrincipal() {
 		setTitle("Venta de electrodomesticos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(-8, -26, 252, 315);
+		setBounds(-8, -26, 241, 319);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(176, 196, 222));
 		contentPane.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
@@ -78,38 +78,38 @@ public class FrmPrincipal extends JFrame {
 		lblOpciones.setBounds(34, 11, 99, 23);
 		contentPane.add(lblOpciones);
 		
-		JButton button = new JButton("");
-		button.addMouseListener(new MouseAdapter() {
+		JButton btnListado = new JButton("");
+		btnListado.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				FrmListado formList = new FrmListado();
 				formList.setVisible(true);
 			}
 		});
-		button.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/recursos/lista.png")));
-		button.setBounds(34, 114, 177, 46);
-		contentPane.add(button);
+		btnListado.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/recursos/lista.png")));
+		btnListado.setBounds(34, 114, 177, 46);
+		contentPane.add(btnListado);
 		
-		JButton button_1 = new JButton("");
-		button_1.addMouseListener(new MouseAdapter() {
+		JButton btnUpdate = new JButton("");
+		btnUpdate.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				FrmModi formModi = new FrmModi();
-				formModi.setVisible(true);
+				/*FrmModi formModi = new FrmModi();
+				formModi.setVisible(true);*/
 			}
 		});
-		button_1.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/recursos/Modi.png")));
-		button_1.setBounds(34, 176, 177, 46);
-		contentPane.add(button_1);
+		btnUpdate.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/recursos/Modi.png")));
+		btnUpdate.setBounds(34, 176, 177, 46);
+		contentPane.add(btnUpdate);
 		
-		JButton button_3 = new JButton("");
-		button_3.addActionListener(new ActionListener() {
+		JButton btnSalir = new JButton("");
+		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			System.exit(0);
 			}
 		});
-		button_3.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/recursos/salir.png")));
-		button_3.setBounds(34, 233, 177, 46);
-		contentPane.add(button_3);
+		btnSalir.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/recursos/salir.png")));
+		btnSalir.setBounds(34, 233, 177, 46);
+		contentPane.add(btnSalir);
 	}
 }

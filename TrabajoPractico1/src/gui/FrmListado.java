@@ -1,6 +1,9 @@
 package gui;
 
 import java.awt.BorderLayout;
+
+import javax.swing.table.*;
+
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -10,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import javax.swing.JLabel;
 
 import java.awt.Toolkit;
@@ -92,7 +96,11 @@ public class FrmListado extends JDialog {
 		
 		
 		tblElectrodomesticos = new JTable();
-		panelTabla.setViewportView(tblElectrodomesticos);		
-		tblElectrodomesticos.setModel(new ModeloElectrodomestico());
+		panelTabla.setViewportView(tblElectrodomesticos);
+		ModeloElectrodomestico model = new ModeloElectrodomestico();
+		TableRowSorter sorter = new TableRowSorter(model);
+		tblElectrodomesticos.setModel(model);
+		tblElectrodomesticos.setRowSorter(sorter);
+
 	}
 }

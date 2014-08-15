@@ -36,6 +36,7 @@ public class FrmAlta extends JDialog {
 	private int tipo= 0; // {0-Television, 1-Lavarropa}
 	private JComboBox cbxColor;
 	private JComboBox cbxConsumo;
+	private JPanel panelBotones;
 	/**
 	 * Launch the application.
 	 */
@@ -124,48 +125,88 @@ public class FrmAlta extends JDialog {
 		lblTipo.setBounds(20, 17, 81, 14);
 		getContentPane().add(lblTipo);
 		
-		JPanel panelPrincipal = new JPanel();
-		panelPrincipal.setBounds(10, 45, 414, 206);
-		getContentPane().add(panelPrincipal);
-		panelPrincipal.setLayout(null);
+		JPanel panelInfo = new JPanel();
+		panelInfo.setBounds(10, 45, 414, 143);
+		getContentPane().add(panelInfo);
+		panelInfo.setLayout(null);
 		
 		txtPrecio = new JTextField();
 		txtPrecio.setBounds(89, 14, 117, 20);
-		panelPrincipal.add(txtPrecio);
+		panelInfo.add(txtPrecio);
 		txtPrecio.setColumns(10);
 		
 		JLabel lblPrecio = new JLabel("Precio base:");
 		lblPrecio.setBounds(10, 17, 86, 14);
-		panelPrincipal.add(lblPrecio);
+		panelInfo.add(lblPrecio);
 		
 		cbxColor = new JComboBox();
 		cbxColor.setModel(new DefaultComboBoxModel(new String[] {"Blanco", "Negro", "Rojo", "Azul", "Gris"}));
 		cbxColor.setBounds(88, 45, 118, 20);
-		panelPrincipal.add(cbxColor);
+		panelInfo.add(cbxColor);
 		
 		JLabel lblColor = new JLabel("Color:");
 		lblColor.setBounds(10, 48, 46, 14);
-		panelPrincipal.add(lblColor);
+		panelInfo.add(lblColor);
 		
 		cbxConsumo = new JComboBox();
 		cbxConsumo.setModel(new DefaultComboBoxModel(new String[] {"A", "B", "C", "D", "E", "F"}));
 		cbxConsumo.setBounds(89, 76, 117, 20);
-		panelPrincipal.add(cbxConsumo);
+		panelInfo.add(cbxConsumo);
 		
 		JLabel lblConsumo = new JLabel("Consumo:");
 		lblConsumo.setBounds(10, 79, 59, 14);
-		panelPrincipal.add(lblConsumo);
+		panelInfo.add(lblConsumo);
 		
 		txtPeso = new JTextField();
 		txtPeso.setBounds(89, 109, 117, 20);
-		panelPrincipal.add(txtPeso);
+		panelInfo.add(txtPeso);
 		txtPeso.setColumns(10);
 		
 		JLabel lblPeso = new JLabel("Peso:");
 		lblPeso.setBounds(10, 112, 46, 14);
-		panelPrincipal.add(lblPeso);
+		panelInfo.add(lblPeso);
+		
+		lblCarga = new JLabel("Carga:");
+		lblCarga.setVisible(false);
+		lblCarga.setBounds(216, 17, 46, 14);
+		panelInfo.add(lblCarga);
+		
+		txtCarga = new JTextField();
+		txtCarga.setVisible(false);
+		txtCarga.setColumns(10);
+		txtCarga.setBounds(287, 14, 117, 20);
+		panelInfo.add(txtCarga);
+		
+		lblResolucion = new JLabel("Resoluci\u00F3n:");
+		lblResolucion.setBounds(216, 17, 73, 14);
+		panelInfo.add(lblResolucion);
+		
+		txtResolucion = new JTextField();
+		txtResolucion.setColumns(10);
+		txtResolucion.setBounds(287, 14, 117, 20);
+		panelInfo.add(txtResolucion);
+		
+		cbxSintonizador = new JCheckBox("Sintonizador");
+		cbxSintonizador.setBounds(270, 40, 134, 30);
+		panelInfo.add(cbxSintonizador);
+		
+		panelBotones = new JPanel();
+		panelBotones.setBounds(10, 196, 414, 55);
+		getContentPane().add(panelBotones);
+		panelBotones.setLayout(null);
 		
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.setBounds(193, 11, 89, 23);
+		panelBotones.add(btnGuardar);
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.setBounds(315, 11, 89, 23);
+		panelBotones.add(btnSalir);
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			dispose();
+			}
+		});
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -196,41 +237,6 @@ public class FrmAlta extends JDialog {
 			}
 
 		});
-		btnGuardar.setBounds(216, 172, 89, 23);
-		panelPrincipal.add(btnGuardar);
-		
-		JButton btnSalir = new JButton("Salir");
-		btnSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			dispose();
-			}
-		});
-		btnSalir.setBounds(315, 172, 89, 23);
-		panelPrincipal.add(btnSalir);
-		
-		lblCarga = new JLabel("Carga:");
-		lblCarga.setVisible(false);
-		lblCarga.setBounds(216, 17, 46, 14);
-		panelPrincipal.add(lblCarga);
-		
-		txtCarga = new JTextField();
-		txtCarga.setVisible(false);
-		txtCarga.setColumns(10);
-		txtCarga.setBounds(287, 14, 117, 20);
-		panelPrincipal.add(txtCarga);
-		
-		lblResolucion = new JLabel("Resoluci\u00F3n:");
-		lblResolucion.setBounds(216, 17, 73, 14);
-		panelPrincipal.add(lblResolucion);
-		
-		txtResolucion = new JTextField();
-		txtResolucion.setColumns(10);
-		txtResolucion.setBounds(287, 14, 117, 20);
-		panelPrincipal.add(txtResolucion);
-		
-		cbxSintonizador = new JCheckBox("Sintonizador");
-		cbxSintonizador.setBounds(270, 40, 134, 30);
-		panelPrincipal.add(cbxSintonizador);
 		
 	}
 }
