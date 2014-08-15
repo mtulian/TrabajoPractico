@@ -46,7 +46,7 @@ public class FrmPrincipal extends JFrame {
 	public FrmPrincipal() {
 		setTitle("Venta de electrodomesticos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(-8, -26, 241, 319);
+		setBounds(-8, -26, 241, 237);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(176, 196, 222));
 		contentPane.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
@@ -90,18 +90,6 @@ public class FrmPrincipal extends JFrame {
 		btnListado.setBounds(34, 114, 177, 46);
 		contentPane.add(btnListado);
 		
-		JButton btnUpdate = new JButton("");
-		btnUpdate.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				/*FrmModi formModi = new FrmModi();
-				formModi.setVisible(true);*/
-			}
-		});
-		btnUpdate.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/recursos/Modi.png")));
-		btnUpdate.setBounds(34, 176, 177, 46);
-		contentPane.add(btnUpdate);
-		
 		JButton btnSalir = new JButton("");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -109,7 +97,7 @@ public class FrmPrincipal extends JFrame {
 			}
 		});
 		btnSalir.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/recursos/salir.png")));
-		btnSalir.setBounds(34, 233, 177, 46);
+		btnSalir.setBounds(34, 171, 177, 46);
 		contentPane.add(btnSalir);
 	}
 }

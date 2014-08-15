@@ -65,9 +65,26 @@ public class ElectrodomesticoAdapter {
 	public void deleteOne(Electrodomestico e){
 		elec.remove(e);
 	}
+	public void deleteOne(int id){
+		for (Electrodomestico electrodomestico : elec) {
+			if (electrodomestico.getId() == id) {
+				elec.remove(electrodomestico);
+				break;
+			}
+		}
+	}
 	public void addOne(Electrodomestico e){
 		elec.add(e);
 	}
-	public void getOne(int ID){}
+	public Electrodomestico getOne(int ID)
+	{
+		for (Electrodomestico electrodomestico : elec) {
+			if (electrodomestico.getId() == ID) {
+				return electrodomestico;
+			}
+		}
+		Electrodomestico elec = new Electrodomestico();
+		return elec;
+	}
 	public void update(int ID){}
 }

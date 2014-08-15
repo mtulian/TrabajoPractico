@@ -19,4 +19,11 @@ public class ElectrodomesticoLogic {
 	public static void addOne(Electrodomestico e){
 		adap.addOne(e);
 	}
+	public static void deleteOne(int id){
+		adap.deleteOne(id);
+	}
+	public static Electrodomestico getOne(int id){
+		return adap.getOne(id);
+	}
+	
 }

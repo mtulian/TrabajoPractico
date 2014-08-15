@@ -8,6 +8,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.TableModelListener;
@@ -31,6 +32,10 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 import negocio.*;
+
+import javax.swing.JTextField;
+import javax.swing.ImageIcon;
+import javax.swing.ListSelectionModel;
 public class FrmListado extends JDialog {
 
 	/**
@@ -63,44 +68,76 @@ public class FrmListado extends JDialog {
 		setModal(true);
 		setBounds(100, 100, 634, 333);
 		getContentPane().setLayout(null);
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setBounds(0, 229, 608, 55);
-			getContentPane().add(buttonPane);
-			buttonPane.setLayout(null);
-			
-			JButton btnSalir = new JButton("Salir");
-			btnSalir.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					dispose();
-				}
-			});
-			btnSalir.setActionCommand("OK");
-			btnSalir.setBounds(529, 21, 79, 23);
-			buttonPane.add(btnSalir);
-			
-			JButton btnListar = new JButton("Listar");
-			btnListar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					listado();
-				}
-			});
-			btnListar.setActionCommand("OK");
-			btnListar.setBounds(440, 21, 79, 23);
-			buttonPane.add(btnListar);
-		}
 		
 		JScrollPane panelTabla = new JScrollPane();
-		panelTabla.setBounds(10, 11, 598, 207);
+		panelTabla.setBounds(10, 11, 598, 197);
 		getContentPane().add(panelTabla);
 		
 		
 		tblElectrodomesticos = new JTable();
+		tblElectrodomesticos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		panelTabla.setViewportView(tblElectrodomesticos);
 		ModeloElectrodomestico model = new ModeloElectrodomestico();
 		TableRowSorter sorter = new TableRowSorter(model);
 		tblElectrodomesticos.setModel(model);
 		tblElectrodomesticos.setRowSorter(sorter);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 219, 598, 65);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JButton btnSalir = new JButton("");
+		btnSalir.setToolTipText("Salir");
+		btnSalir.setIcon(new ImageIcon(FrmListado.class.getResource("/recursos/salir.png")));
+		btnSalir.setBounds(536, 11, 52, 52);
+		panel.add(btnSalir);
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
+		btnSalir.setActionCommand("OK");
+		//Codigo para centrarlo
+		setLocationRelativeTo(null);
+		JButton btnEliminar = new JButton("");
+		btnEliminar.setToolTipText("Eliminar");
+		btnEliminar.setBounds(474, 11, 52, 52);
+		panel.add(btnEliminar);
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {	
+				
+				int filaselec = tblElectrodomesticos.getSelectedRow();
+				if (filaselec != -1) 
+				{	
+					int rta = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar el electrodomestico seleccionado?", "Aviso", JOptionPane.YES_NO_OPTION);
+					if(rta == 0) // Cambiar por Result del JOptionPane.
+					{
+						
+				
+							int id = (int) tblElectrodomesticos.getValueAt(filaselec, 0);
+							ElectrodomesticoLogic.deleteOne(id);
+							listado();
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "No hay electrodomesticos seleccionados", "Aviso", JOptionPane.INFORMATION_MESSAGE );
+				}
+			}
+		});
+		btnEliminar.setIcon(new ImageIcon(FrmListado.class.getResource("/recursos/Baja.png")));
+		
+		JButton btnModi = new JButton("");
+		btnModi.setToolTipText("Modificar");
+		btnModi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FrmModi formulario = new FrmModi();
+				formulario.setVisible(true);
+			}
+		});
+		btnModi.setBounds(412, 11, 52, 52);
+		panel.add(btnModi);
+		btnModi.setIcon(new ImageIcon(FrmListado.class.getResource("/recursos/Modi.png")));
 
 	}
 }

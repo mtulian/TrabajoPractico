@@ -18,6 +18,7 @@ import negocio.ElectrodomesticoLogic;
 import entidades.Electrodomestico;
 import entidades.Lavarropas;
 import entidades.Television;
+import javax.swing.ImageIcon;
 
 public class FrmAlta extends JDialog {
 
@@ -33,10 +34,10 @@ public class FrmAlta extends JDialog {
 	private JLabel lblCarga;
 	private JCheckBox cbxSintonizador;
 	private JLabel lblResolucion;
-	private int tipo= 0; // {0-Television, 1-Lavarropa}
 	private JComboBox cbxColor;
 	private JComboBox cbxConsumo;
 	private JPanel panelBotones;
+	private int tipo= 0; // {0-Television, 1-Lavarropa}
 	/**
 	 * Launch the application.
 	 */
@@ -98,7 +99,7 @@ public class FrmAlta extends JDialog {
 	 */
 	public FrmAlta() {
 		setModal(true);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 315);
 		getContentPane().setLayout(null);
 		//Codigo para centrarlo
 				setLocationRelativeTo(null);
@@ -191,16 +192,20 @@ public class FrmAlta extends JDialog {
 		panelInfo.add(cbxSintonizador);
 		
 		panelBotones = new JPanel();
-		panelBotones.setBounds(10, 196, 414, 55);
+		panelBotones.setBounds(10, 196, 414, 70);
 		getContentPane().add(panelBotones);
 		panelBotones.setLayout(null);
 		
-		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(193, 11, 89, 23);
+		JButton btnGuardar = new JButton("");
+		btnGuardar.setIcon(new ImageIcon(FrmAlta.class.getResource("/recursos/Guardar.png")));
+		btnGuardar.setToolTipText("Guardar");
+		btnGuardar.setBounds(267, 11, 62, 48);
 		panelBotones.add(btnGuardar);
 		
-		JButton btnSalir = new JButton("Salir");
-		btnSalir.setBounds(315, 11, 89, 23);
+		JButton btnSalir = new JButton("");
+		btnSalir.setToolTipText("Salir");
+		btnSalir.setIcon(new ImageIcon(FrmAlta.class.getResource("/recursos/salir.png")));
+		btnSalir.setBounds(339, 11, 65, 48);
 		panelBotones.add(btnSalir);
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -229,8 +234,7 @@ public class FrmAlta extends JDialog {
 						Television nuevoElectro = new Television(p,c,ce,pe,res,sinto);
 						ElectrodomesticoLogic.addOne(nuevoElectro);
 						break;
-						}
-						
+						}	
 				}
 				Limpiar();
 				
