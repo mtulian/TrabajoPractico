@@ -45,13 +45,12 @@ public Television(float p,String c,String ce,float pe,float res,boolean sinto){
 		return p;
 	}
 
-//Generado para la tabla
-/*
+
 public void setResolucion(float resolucion) {
 	this.resolucion = resolucion;
 }
 public void setSintonizadorTDT(boolean sintonizadorTDT) {
 	this.sintonizadorTDT = sintonizadorTDT;
 }
-*/
+
 }

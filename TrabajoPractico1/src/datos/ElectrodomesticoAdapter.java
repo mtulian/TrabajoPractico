@@ -86,5 +86,7 @@ public class ElectrodomesticoAdapter {
 		Electrodomestico elec = new Electrodomestico();
 		return elec;
 	}
-	public void update(int ID){}
+	public void update(Electrodomestico e){
+		elec.set(e.getId(), e);
+	}
 }

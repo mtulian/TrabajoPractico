@@ -131,8 +131,17 @@ public class FrmListado extends JDialog {
 		btnModi.setToolTipText("Modificar");
 		btnModi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int filaselec = tblElectrodomesticos.getSelectedRow();
+				if (filaselec != -1) 
+				{	
 				FrmModi formulario = new FrmModi();
+				formulario.cargarForm((int)tblElectrodomesticos.getValueAt(filaselec,0));
 				formulario.setVisible(true);
+				listado();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "No hay electrodomesticos seleccionados", "Aviso", JOptionPane.INFORMATION_MESSAGE );
+				}
 			}
 		});
 		btnModi.setBounds(412, 11, 52, 52);

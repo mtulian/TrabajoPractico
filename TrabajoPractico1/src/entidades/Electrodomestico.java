@@ -119,8 +119,7 @@ public float precioFinal(){
 	public String toString() {
 		return id+"-"+String.valueOf(precioBase)+" "+color+" "+consumoEnergetico+" " +peso;
 	}
-//Agregados en ultima version para tabla
-/*
+
 public void setPrecioBase(float precioBase) {
 	this.precioBase = precioBase;
 }
@@ -133,6 +132,6 @@ public void setConsumoEnergetico(String consumoEnergetico) {
 public void setPeso(float peso) {
 	this.peso = peso;
 }
-*/
+
 
 }

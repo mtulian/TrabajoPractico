@@ -25,5 +25,7 @@ public class ElectrodomesticoLogic {
 	public static Electrodomestico getOne(int id){
 		return adap.getOne(id);
 	}
-	
+	public static void update(Electrodomestico e){
+		adap.update(e);
+	}
 }
