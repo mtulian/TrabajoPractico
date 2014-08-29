@@ -36,6 +36,9 @@ import negocio.*;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.ListSelectionModel;
+import java.awt.SystemColor;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 public class FrmListado extends JDialog {
 
 	/**
@@ -63,13 +66,16 @@ public class FrmListado extends JDialog {
 	 * Create the dialog.
 	 */
 	public FrmListado() {
+		setResizable(false);
+		getContentPane().setBackground(SystemColor.controlHighlight);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrmListado.class.getResource("/recursos/home.png")));
 		setTitle("Listado de electrodomesticos");
 		setModal(true);
-		setBounds(100, 100, 634, 333);
+		setBounds(100, 100, 624, 323);
 		getContentPane().setLayout(null);
 		
 		JScrollPane panelTabla = new JScrollPane();
+		panelTabla.setBorder(new LineBorder(SystemColor.desktop, 1, true));
 		panelTabla.setBounds(10, 11, 598, 197);
 		getContentPane().add(panelTabla);
 		
@@ -82,16 +88,17 @@ public class FrmListado extends JDialog {
 		tblElectrodomesticos.setModel(model);
 		tblElectrodomesticos.setRowSorter(sorter);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 219, 598, 65);
-		getContentPane().add(panel);
-		panel.setLayout(null);
+		JPanel panelBotones = new JPanel();
+		panelBotones.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		panelBotones.setBounds(10, 219, 598, 65);
+		getContentPane().add(panelBotones);
+		panelBotones.setLayout(null);
 		
 		JButton btnSalir = new JButton("");
 		btnSalir.setToolTipText("Salir");
 		btnSalir.setIcon(new ImageIcon(FrmListado.class.getResource("/recursos/salir.png")));
-		btnSalir.setBounds(536, 11, 52, 52);
-		panel.add(btnSalir);
+		btnSalir.setBounds(536, 7, 52, 52);
+		panelBotones.add(btnSalir);
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
@@ -102,8 +109,8 @@ public class FrmListado extends JDialog {
 		setLocationRelativeTo(null);
 		JButton btnEliminar = new JButton("");
 		btnEliminar.setToolTipText("Eliminar");
-		btnEliminar.setBounds(474, 11, 52, 52);
-		panel.add(btnEliminar);
+		btnEliminar.setBounds(468, 7, 52, 52);
+		panelBotones.add(btnEliminar);
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {	
 				
@@ -144,8 +151,8 @@ public class FrmListado extends JDialog {
 				}
 			}
 		});
-		btnModi.setBounds(412, 11, 52, 52);
-		panel.add(btnModi);
+		btnModi.setBounds(399, 7, 52, 52);
+		panelBotones.add(btnModi);
 		btnModi.setIcon(new ImageIcon(FrmListado.class.getResource("/recursos/Modi.png")));
 
 	}

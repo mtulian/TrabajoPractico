@@ -23,6 +23,17 @@ import entidades.Electrodomestico;
 import entidades.Lavarropas;
 import entidades.Television;
 
+import java.awt.Toolkit;
+import java.awt.SystemColor;
+
+import javax.swing.border.LineBorder;
+
+import utilidades.Validacion;
+
+import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 public class FrmModi extends JDialog {
 	private JTextField txtPrecioBase;
 	private JTextField txtPeso;
@@ -33,8 +44,8 @@ public class FrmModi extends JDialog {
 	private JLabel lblResolucion;
 	private JComboBox cbxColor;
 	private JComboBox cbxConsumo;
-	private JButton button;
-	private JButton button_1;
+	private JButton btnGuardar;
+	private JButton btnSalir;
 	private Electrodomestico elec;
 	/**
 	 * Launch the application.
@@ -78,113 +89,137 @@ public class FrmModi extends JDialog {
 	}
 	
 	public FrmModi() {
+		setResizable(false);
+		getContentPane().setBackground(SystemColor.controlHighlight);
+		setTitle("Modifaci\u00F3n de electrodomesticos");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrmModi.class.getResource("/recursos/home.png")));
 		setModal(true);
-		setBounds(100, 100, 450, 299);
+		setBounds(100, 100, 440, 290);
 		getContentPane().setLayout(null);
-		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 414, 154);
-		getContentPane().add(panel);
-		panel.setLayout(null);
+		JPanel panelCampos = new JPanel();
+		panelCampos.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		panelCampos.setBounds(10, 11, 414, 154);
+		getContentPane().add(panelCampos);
+		panelCampos.setLayout(null);
 		{
 			txtPrecioBase = new JTextField();
+			txtPrecioBase.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					   Validacion.soloAdmiteDigitos(e);		      
+				}
+			});
 			txtPrecioBase.setBounds(83, 26, 117, 20);
-			panel.add(txtPrecioBase);
+			panelCampos.add(txtPrecioBase);
 			txtPrecioBase.setColumns(10);
 		}
 		//Codigo para centrarlo
 		setLocationRelativeTo(null);
 	    cbxColor = new JComboBox();
 		cbxColor.setBounds(83, 57, 117, 20);
-		panel.add(cbxColor);
+		panelCampos.add(cbxColor);
 		cbxColor.setModel(new DefaultComboBoxModel(new String[] {"Blanco", "Negro", "Rojo", "Azul", "Gris"}));
 		
 	    cbxConsumo = new JComboBox();
 		cbxConsumo.setBounds(83, 88, 117, 20);
-		panel.add(cbxConsumo);
+		panelCampos.add(cbxConsumo);
 		cbxConsumo.setModel(new DefaultComboBoxModel(new String[] {"A", "B", "C", "D", "E", "F"}));
 		{
 			txtPeso = new JTextField();
+			txtPeso.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					   Validacion.soloAdmiteDigitos(e);
+				}
+			});
 			txtPeso.setBounds(83, 119, 117, 20);
-			panel.add(txtPeso);
+			panelCampos.add(txtPeso);
 			txtPeso.setColumns(10);
 		}
 		{
 			JLabel lblPrecioBase = new JLabel("Precio base:");
 			lblPrecioBase.setBounds(10, 32, 104, 14);
-			panel.add(lblPrecioBase);
+			panelCampos.add(lblPrecioBase);
 		}
 		{
 			JLabel lblColor = new JLabel("Color:");
 			lblColor.setBounds(10, 63, 46, 14);
-			panel.add(lblColor);
+			panelCampos.add(lblColor);
 		}
 		{
 			JLabel lblConsumo = new JLabel("Consumo:");
 			lblConsumo.setBounds(10, 94, 56, 14);
-			panel.add(lblConsumo);
+			panelCampos.add(lblConsumo);
 		}
 		{
 			JLabel lblPeso = new JLabel("Peso:");
 			lblPeso.setBounds(10, 125, 56, 14);
-			panel.add(lblPeso);
+			panelCampos.add(lblPeso);
 		}
 		{
 		    cbxSintonizador = new JCheckBox("Sintonizador");
 			cbxSintonizador.setVisible(false);
-			cbxSintonizador.setBounds(274, 52, 134, 30);
-			panel.add(cbxSintonizador);
+			cbxSintonizador.setBounds(287, 52, 109, 30);
+			panelCampos.add(cbxSintonizador);
 		}
 		{
 			txtCarga = new JTextField();
+			txtCarga.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyTyped(KeyEvent e) {
+					   Validacion.soloAdmiteDigitos(e);
+				}
+			});
 			txtCarga.setVisible(false);
 			txtCarga.setColumns(10);
 			txtCarga.setBounds(287, 26, 117, 20);
-			panel.add(txtCarga);
+			panelCampos.add(txtCarga);
 		}
 		{
 			txtResolucion = new JTextField();
 			txtResolucion.setVisible(false);
 			txtResolucion.setColumns(10);
 			txtResolucion.setBounds(287, 26, 117, 20);
-			panel.add(txtResolucion);
+			panelCampos.add(txtResolucion);
 		}
 		{
 			lblResolucion = new JLabel("Resoluci\u00F3n:");
 			lblResolucion.setVisible(false);
 			lblResolucion.setBounds(210, 29, 69, 14);
-			panel.add(lblResolucion);
+			panelCampos.add(lblResolucion);
 		}
 		{
 			lblCarga = new JLabel("Carga:");
 			lblCarga.setVisible(false);
 			lblCarga.setBounds(210, 29, 63, 14);
-			panel.add(lblCarga);
+			panelCampos.add(lblCarga);
 		}
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 176, 414, 76);
-		getContentPane().add(panel_1);
-		panel_1.setLayout(null);
+		JPanel panelBotones = new JPanel();
+		panelBotones.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		panelBotones.setBounds(10, 176, 414, 76);
+		getContentPane().add(panelBotones);
+		panelBotones.setLayout(null);
 		{
-			button = new JButton("");
-			button.setIcon(new ImageIcon(FrmModi.class.getResource("/recursos/Guardar.png")));
-			button.setSelectedIcon(new ImageIcon(FrmModi.class.getResource("/recursos/Guardar.png")));
-			button.setToolTipText("Guardar");
-			button.setBounds(273, 11, 60, 56);
-			panel_1.add(button);
+			btnGuardar = new JButton("");
+			btnGuardar.setIcon(new ImageIcon(FrmModi.class.getResource("/recursos/Guardar.png")));
+			btnGuardar.setSelectedIcon(new ImageIcon(FrmModi.class.getResource("/recursos/Guardar.png")));
+			btnGuardar.setToolTipText("Guardar");
+			btnGuardar.setBounds(273, 11, 60, 56);
+			panelBotones.add(btnGuardar);
 			{
-				button_1 = new JButton("");
-				button_1.setIcon(new ImageIcon(FrmModi.class.getResource("/recursos/salir.png")));
-				button_1.setToolTipText("Salir");
-				button_1.setBounds(343, 11, 60, 56);
-				panel_1.add(button_1);
-				button_1.addActionListener(new ActionListener() {
+				btnSalir = new JButton("");
+				btnSalir.setIcon(new ImageIcon(FrmModi.class.getResource("/recursos/salir.png")));
+				btnSalir.setToolTipText("Salir");
+				btnSalir.setBounds(343, 11, 60, 56);
+				panelBotones.add(btnSalir);
+				btnSalir.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
 					}
 				});
 			}
-			button.addActionListener(new ActionListener() {
+			btnGuardar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					elec.setPrecioBase(Float.parseFloat(txtPrecioBase.getText()));
 					elec.setPeso(Float.parseFloat(txtPeso.getText()));

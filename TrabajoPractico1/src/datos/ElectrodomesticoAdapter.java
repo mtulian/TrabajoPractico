@@ -13,8 +13,8 @@ import entidades.Television;
 public class ElectrodomesticoAdapter {
 	static ArrayList<Electrodomestico> elec = new ArrayList<Electrodomestico>();
 	
-	public ArrayList<Television>  getallBD(){
-		ArrayList<Television> prueba = new ArrayList<Television>();
+	public ArrayList<Electrodomestico>  getallBD(){
+		ArrayList<Electrodomestico> prueba = new ArrayList<Electrodomestico>();
 	      
         try
         {

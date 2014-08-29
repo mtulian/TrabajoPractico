@@ -7,10 +7,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 
-/**
- *
- * @author Kevin Arnold
- */
 public class ConexionDB {
       
     @SuppressWarnings("finally")
