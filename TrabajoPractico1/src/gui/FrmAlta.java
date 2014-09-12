@@ -264,29 +264,33 @@ public class FrmAlta extends JDialog {
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
-				float p = Float.parseFloat(txtPrecio.getText());
-				String c = (String)cbxColor.getSelectedItem();
-				String ce = (String)cbxConsumo.getSelectedItem();
-				float pe = Float.parseFloat(txtPeso.getText());
-				switch(tipo)
+				if(Validacion.camposVacios(txtPrecio.getText(),cbxColor.getSelectedItem(),cbxConsumo.getSelectedItem(),txtPeso.getText(),tipo, txtCarga.getText(),txtResolucion.getText() ))
 				{
-					case 1:{ 
-						float carga = Float.parseFloat(txtCarga.getText());
-						Lavarropas nuevoElectro = new Lavarropas(p,c,ce,pe,carga); 
-						ElectrodomesticoLogic.addOne(nuevoElectro);
-						break;
-							}
-					default: {
-						float res = Float.parseFloat(txtResolucion.getText());
-						boolean sinto = cbxSintonizador.isSelected();
-						Television nuevoElectro = new Television(p,c,ce,pe,res,sinto);
-						ElectrodomesticoLogic.addOne(nuevoElectro);
-						break;
-						}	
+					
+					float p = Float.parseFloat(txtPrecio.getText());
+					String c = (String)cbxColor.getSelectedItem();
+					String ce = (String)cbxConsumo.getSelectedItem();
+					float pe = Float.parseFloat(txtPeso.getText());
+					
+					switch(tipo)
+					{
+						case 1:{ 
+							float carga = Float.parseFloat(txtCarga.getText());
+								Lavarropas nuevoElectro = new Lavarropas(p,c,ce,pe,carga); 
+								ElectrodomesticoLogic.addOne(nuevoElectro);
+							break;
+								}
+						default: {
+							float res = Float.parseFloat(txtResolucion.getText());
+							boolean sinto = cbxSintonizador.isSelected();
+								Television nuevoElectro = new Television(p,c,ce,pe,res,sinto);
+								ElectrodomesticoLogic.addOne(nuevoElectro);
+							break;
+							}	
+					}
+					Limpiar();
 				}
-				Limpiar();
-				
+			
 			}
 
 		});

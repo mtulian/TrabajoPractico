@@ -47,6 +47,7 @@ public class FrmModi extends JDialog {
 	private JButton btnGuardar;
 	private JButton btnSalir;
 	private Electrodomestico elec;
+	int tipo;
 	/**
 	 * Launch the application.
 	 */
@@ -81,10 +82,12 @@ public class FrmModi extends JDialog {
 		if (elec instanceof Lavarropas) {
 			txtCarga.setText(String.valueOf(((Lavarropas) elec).getCarga()));
 			activaLava(true);
+			tipo=1;
 		}else if(elec instanceof Television){
 			cbxSintonizador.setSelected(((Television) elec).isSintonizadorTDT());
 			txtResolucion.setText(String.valueOf(((Television) elec).getResolucion()));
 			activaTele(true);
+			tipo=2;
 		}
 	}
 	
@@ -221,18 +224,21 @@ public class FrmModi extends JDialog {
 			}
 			btnGuardar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					elec.setPrecioBase(Float.parseFloat(txtPrecioBase.getText()));
-					elec.setPeso(Float.parseFloat(txtPeso.getText()));
-					elec.setColor((String)cbxColor.getSelectedItem());
-					elec.setConsumoEnergetico((String)cbxConsumo.getSelectedItem());
-					if (elec instanceof Lavarropas) {
-						((Lavarropas) elec).setCarga(Float.parseFloat(txtCarga.getText()));
-					}else if (elec instanceof Television) {
-						((Television) elec).setResolucion(Float.parseFloat(txtResolucion.getText()));
-						((Television) elec).setSintonizadorTDT(cbxSintonizador.isSelected());
+					if(Validacion.camposVacios(txtPrecioBase.getText(),cbxColor.getSelectedItem(),cbxConsumo.getSelectedItem(),txtPeso.getText(),tipo, txtCarga.getText(),txtResolucion.getText() ))
+					{					
+						elec.setPrecioBase(Float.parseFloat(txtPrecioBase.getText()));
+						elec.setPeso(Float.parseFloat(txtPeso.getText()));
+						elec.setColor((String)cbxColor.getSelectedItem());
+						elec.setConsumoEnergetico((String)cbxConsumo.getSelectedItem());
+						if (elec instanceof Lavarropas) {
+							((Lavarropas) elec).setCarga(Float.parseFloat(txtCarga.getText()));
+						}else if (elec instanceof Television) {
+							((Television) elec).setResolucion(Float.parseFloat(txtResolucion.getText()));
+							((Television) elec).setSintonizadorTDT(cbxSintonizador.isSelected());
+						}
+						ElectrodomesticoLogic.update(elec);
+						dispose();
 					}
-					ElectrodomesticoLogic.update(elec);
-				dispose();
 				}
 			});
 		}
