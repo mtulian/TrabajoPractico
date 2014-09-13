@@ -26,7 +26,7 @@ public class Validacion {
 		
 		if(precio.trim().isEmpty())
 		{
-			mensaje +="* Precio base\n ";
+			mensaje +="* Precio base\n";
 			valido=false;
 		}
 		
