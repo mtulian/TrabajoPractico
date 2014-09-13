@@ -82,7 +82,7 @@ public class Splash extends JFrame {
 					}
 				}*/
 				try {
-					sleep(9000);
+					sleep(10000);
 					Cerrar();
 					//SE INSTANCIA EL MENÚ
 					//
