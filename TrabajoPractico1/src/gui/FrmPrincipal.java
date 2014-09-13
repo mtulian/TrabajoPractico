@@ -37,6 +37,7 @@ public class FrmPrincipal extends JFrame {
 				try {
 					FrmPrincipal frame = new FrmPrincipal();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

@@ -8,11 +8,19 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.MatteBorder;
+import java.awt.Color;
+import javax.swing.border.LineBorder;
+import javax.swing.JProgressBar;
+import javax.swing.UIManager;
+import java.awt.SystemColor;
 
 public class Splash extends JFrame {
 
 	private JPanel contentPane;
-
+	JLabel fondoFrame;
+	JProgressBar Progreso;
 	/**
 	 * Launch the application.
 	 */
@@ -38,27 +46,43 @@ public class Splash extends JFrame {
 		setBounds(-8, -26, 241, 276);
 		setUndecorated(true);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new CompoundBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)), null));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		this.setLocationRelativeTo(null);
 		
+		
+		Progreso = new JProgressBar();
+		Progreso.setForeground(SystemColor.activeCaption);
+		Progreso.setBorder(new LineBorder(new Color(0, 0, 0)));
+		Progreso.setIndeterminate(true);
+		Progreso.setBackground(Color.WHITE);
+		Progreso.setBounds(48, 232, 146, 14);
+		contentPane.add(Progreso);
+		this.setLocationRelativeTo(null);
+		setVisible(true);
+		
+		fondoFrame = new JLabel(new ImageIcon(Splash.class.getResource("/recursos/Splash.png")));
+		fondoFrame.setBorder(new LineBorder(new Color(0, 0, 0)));
+		fondoFrame.setBounds(0, 0, 241, 276);
+		contentPane.add(fondoFrame);
+
 		new Thread()
 		{
 			public void run()
 			{
+				/*
 				for(int i=0; i<=100;i++)
 				{
 					try {
 						sleep(70);
-						//Progreso.setValue(i);
+						Progreso.setValue(i);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-				}
+				}*/
 				try {
-					sleep(1000);
+					sleep(9000);
 					Cerrar();
 					//SE INSTANCIA EL MENÚ
 					//
