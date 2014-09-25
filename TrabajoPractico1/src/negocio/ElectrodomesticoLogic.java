@@ -6,13 +6,15 @@ import datos.*;
 import entidades.*;
 
 public class ElectrodomesticoLogic {
+	
 	static ElectrodomesticoAdapter adap = new ElectrodomesticoAdapter();
+	
 	public static ArrayList<Electrodomestico> getall(){
 		return adap.getAll();
 	}
-	/*public static ArrayList<Television> getallBD(){
-		return adap.getallBD();
-	}*/
+	public static ArrayList<Electrodomestico> getallBD(){
+		return adap.getAllBD();
+	}
 	public static void deleteOne(Electrodomestico e){
 		adap.deleteOne(e);
 	}
@@ -21,6 +23,9 @@ public class ElectrodomesticoLogic {
 	}
 	public static void deleteOne(int id){
 		adap.deleteOne(id);
+	}
+	public static void deleteOneDB(int id){
+		adap.deleteOneBD(id);
 	}
 	public static Electrodomestico getOne(int id){
 		return adap.getOne(id);

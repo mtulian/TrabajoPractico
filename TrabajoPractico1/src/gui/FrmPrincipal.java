@@ -51,7 +51,7 @@ public class FrmPrincipal extends JFrame {
 	public FrmPrincipal() {
 		setTitle("Venta de electrodomesticos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(-8, -26, 241, 276);
+		setBounds(-8, -26, 241, 341);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(176, 196, 222));
 		contentPane.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
@@ -101,7 +101,16 @@ public class FrmPrincipal extends JFrame {
 			}
 		});
 		btnSalir.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/recursos/salir.png")));
-		btnSalir.setBounds(34, 184, 177, 46);
+		btnSalir.setBounds(34, 254, 177, 46);
 		contentPane.add(btnSalir);
+		
+		JButton button = new JButton("");
+		button.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/recursos/configuracion.png")));
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		button.setBounds(34, 185, 177, 46);
+		contentPane.add(button);
 	}
 }
