@@ -43,7 +43,7 @@ public class Splash extends JFrame {
 	public Splash() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(-8, -26, 241, 341);
+		setBounds(-8, -26, 241, 276);
 		setUndecorated(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new CompoundBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)), null));
@@ -56,7 +56,7 @@ public class Splash extends JFrame {
 		Progreso.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Progreso.setIndeterminate(true);
 		Progreso.setBackground(Color.WHITE);
-		Progreso.setBounds(48, 316, 146, 14);
+		Progreso.setBounds(50, 227, 146, 14);
 		contentPane.add(Progreso);
 		this.setLocationRelativeTo(null);
 		setVisible(true);
