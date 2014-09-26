@@ -95,6 +95,16 @@ public class ElectrodomesticoAdapter {
 			}
 		return prueba;
 	}
+	public void insertOneBD(){
+        try
+        {
+    		registro = comando.executeQuery("INSERT INTO ELECTRODOMESTICO (precioBase, color, consumoEnergetico, peso, resolucion, sintonizador, carga) VALUES ()");
+    		liberaRecursosBD();
+        }
+		catch(SQLException sqle){
+			System.out.println(sqle.getMessage());
+		}
+	}
 	public void deleteOneBD(int id){
         try
         {
@@ -114,8 +124,7 @@ public class ElectrodomesticoAdapter {
 		catch(SQLException sqle){
 			System.out.println(sqle.getMessage());
 		}
-	}
-	
+	}	
 	public void liberaRecursosBD(){
 		try{
 			
