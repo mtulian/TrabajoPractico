@@ -68,6 +68,11 @@ public class ElectrodomesticoAdapter {
 	}
 	
 	//MÉTODOS DE LA BASE DE DATOS
+	/*
+	public Electrodomestico getOneBD(int id){
+		
+	}
+	*/
 	public ArrayList<Electrodomestico> getAllBD(){
 		ArrayList<Electrodomestico> prueba = new ArrayList<Electrodomestico>();
 	      
@@ -95,10 +100,24 @@ public class ElectrodomesticoAdapter {
 			}
 		return prueba;
 	}
-	public void insertOneBD(){
+	public void addOneBD(Electrodomestico e){
         try
         {
-    		registro = comando.executeQuery("INSERT INTO ELECTRODOMESTICO (precioBase, color, consumoEnergetico, peso, resolucion, sintonizador, carga) VALUES ()");
+        	String query =null;
+        	float pb = e.getPrecioBase();
+        	String col = e.getColor();
+        	String con = e.getConsumoEnergético();
+        	float pes = e.getPeso();
+        	if(e instanceof Lavarropas){
+        		float car = ((Lavarropas) e).getCarga();
+        		query = "INSERT INTO ELECTRODOMESTICO (precioBase, color, consumoEnergetico, peso, carga) VALUES (pb, col, con, pes, car)";
+        	}
+        	else if (e instanceof Television){
+        		float res = ((Television) e).getResolucion();
+        		boolean sin = ((Television)e).isSintonizadorTDT();
+        		query = "INSERT INTO ELECTRODOMESTICO (precioBase, color, consumoEnergetico, peso, resolucion, sintonizador) VALUES (pb, col, con, pes, res, sin)";
+        	}
+        	registro = comando.executeQuery(query);
     		liberaRecursosBD();
         }
 		catch(SQLException sqle){
@@ -115,7 +134,7 @@ public class ElectrodomesticoAdapter {
 			System.out.println(sqle.getMessage());
 		}
 	}
-	public void updateBD(int id){	
+	public void updateOneBD(Electrodomestico e){	
         try
         {
     		registro = comando.executeQuery("UPDATE ELECTRODOMESTICO SET() WHERE id=id");
