@@ -108,6 +108,8 @@ public class FrmPrincipal extends JFrame {
 		button.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/recursos/configuracion.png")));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				FrmConfig frmConfig = new FrmConfig();
+				frmConfig.setVisible(true);
 			}
 		});
 		button.setBounds(34, 185, 177, 46);
