@@ -17,6 +17,7 @@ public class ElectrodomesticoAdapter {
 	Connection myconn;
 	Statement comando;
 	ResultSet registro;
+	String query =null;
 	
 	//MÉTODOS DEL CATÁLOGO
 	public static ArrayList<Electrodomestico> getAll(){
@@ -74,8 +75,7 @@ public class ElectrodomesticoAdapter {
 	}
 	*/
 	public ArrayList<Electrodomestico> getAllBD(){
-		ArrayList<Electrodomestico> prueba = new ArrayList<Electrodomestico>();
-	      
+		ArrayList<Electrodomestico> prueba = new ArrayList<Electrodomestico>();      
         try
         {
             myconn = ConexionDB.GetConnection();
@@ -103,7 +103,6 @@ public class ElectrodomesticoAdapter {
 	public void addOneBD(Electrodomestico e){
         try
         {
-        	String query =null;
         	float pb = e.getPrecioBase();
         	String col = e.getColor();
         	String con = e.getConsumoEnergético();
@@ -137,7 +136,20 @@ public class ElectrodomesticoAdapter {
 	public void updateOneBD(Electrodomestico e){	
         try
         {
-    		registro = comando.executeQuery("UPDATE ELECTRODOMESTICO SET() WHERE id=id");
+        	float pb = e.getPrecioBase();
+        	String col = e.getColor();
+        	String con = e.getConsumoEnergético();
+        	float pes = e.getPeso();
+        	if(e instanceof Lavarropas){
+        		float car = ((Lavarropas) e).getCarga();
+        		query = "UPDATE ELECTRODOMESTICO SET(precioBase=pb, color=col, consumoEnergético=con, peso=pes, carga=car) WHERE id=id";
+        	}
+        	else if (e instanceof Television){
+        		float res = ((Television) e).getResolucion();
+        		boolean sin = ((Television)e).isSintonizadorTDT();
+        		query = "UPDATE ELECTRODOMESTICO SET(precioBase=pb, color=col, consumoEnergético=con, peso=pes, resolucion=res, sintonizador=sin) WHERE id=id";
+        	}
+    		registro = comando.executeQuery(query);
     		liberaRecursosBD();
         }
 		catch(SQLException sqle){

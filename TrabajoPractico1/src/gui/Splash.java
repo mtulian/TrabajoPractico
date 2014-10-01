@@ -82,14 +82,11 @@ public class Splash extends JFrame {
 					}
 				}*/
 				try {
-					sleep(10000);
+					sleep(1000);
 					Cerrar();
-					//SE INSTANCIA EL MENÚ
-					//
-					//
-					//
-					//
-					//SE PONE EN VISIBLE
+					FrmPrincipal frmPrincipal = new FrmPrincipal();
+					frmPrincipal.setVisible(true);
+					
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

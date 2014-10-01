@@ -237,6 +237,7 @@ public class FrmModi extends JDialog {
 							((Television) elec).setSintonizadorTDT(cbxSintonizador.isSelected());
 						}
 						ElectrodomesticoLogic.update(elec);
+						//ElectrodomesticoLogic.updateOneDB(elec);
 						dispose();
 					}
 				}
