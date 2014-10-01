@@ -50,6 +50,10 @@ public class FrmPrincipal extends JFrame {
 		//hasta ahí
 		
 		JButton btnAlta = new JButton("");
+		btnAlta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnAlta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {

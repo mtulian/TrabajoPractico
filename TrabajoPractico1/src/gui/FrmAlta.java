@@ -278,7 +278,7 @@ public class FrmAlta extends JDialog {
 							float carga = Float.parseFloat(txtCarga.getText());
 								Lavarropas nuevoElectro = new Lavarropas(p,c,ce,pe,carga); 
 								ElectrodomesticoLogic.addOne(nuevoElectro);
-								//ElectrodomesticoLogic.addOneBD(nuevoElectro);
+								ElectrodomesticoLogic.addOneBD(nuevoElectro);
 							break;
 								}
 						default: {
@@ -286,7 +286,7 @@ public class FrmAlta extends JDialog {
 							boolean sinto = cbxSintonizador.isSelected();
 								Television nuevoElectro = new Television(p,c,ce,pe,res,sinto);
 								ElectrodomesticoLogic.addOne(nuevoElectro);
-								//ElectrodomesticoLogic.addOneBD(nuevoElectro);
+								ElectrodomesticoLogic.addOneBD(nuevoElectro);
 							break;
 							}	
 					}

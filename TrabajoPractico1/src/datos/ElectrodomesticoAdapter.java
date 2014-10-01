@@ -103,20 +103,32 @@ public class ElectrodomesticoAdapter {
 	public void addOneBD(Electrodomestico e){
         try
         {
+            myconn = ConexionDB.GetConnection();
+            comando = myconn.createStatement();
+            
         	float pb = e.getPrecioBase();
         	String col = e.getColor();
         	String con = e.getConsumoEnergético();
         	float pes = e.getPeso();
+        	float nothing = 0;
         	if(e instanceof Lavarropas){
         		float car = ((Lavarropas) e).getCarga();
-        		query = "INSERT INTO ELECTRODOMESTICO (precioBase, color, consumoEnergetico, peso, carga) VALUES (pb, col, con, pes, car)";
+        		query = "INSERT INTO electrodomestico(precioBase, color, consumoEnergetico, peso, resolucion, sintonizador, carga) VALUES('"+pb+"', '"+col+"','"+con+"', '"+pes+"', '"+nothing+"', '"+nothing+"', '"+car+"')";
         	}
         	else if (e instanceof Television){
         		float res = ((Television) e).getResolucion();
         		boolean sin = ((Television)e).isSintonizadorTDT();
-        		query = "INSERT INTO ELECTRODOMESTICO (precioBase, color, consumoEnergetico, peso, resolucion, sintonizador) VALUES (pb, col, con, pes, res, sin)";
+        		
+        		//En la base de datos los valores booleanos estan dados por 1 y 0, es necesario realizar la conversión.
+        		int sinInt;
+        		if(sin)
+        			sinInt = 1;
+        		else
+        			sinInt = 0;
+        		query = "INSERT INTO electrodomestico(precioBase, color, consumoEnergetico, peso, resolucion, sintonizador, carga) VALUES('"+pb+"', '"+col+"','"+con+"', '"+pes+"', '"+res+"', '"+sinInt+"', '"+nothing+"')";
         	}
-        	registro = comando.executeQuery(query);
+        	//registro = comando.executeQuery(query);
+        	comando.execute(query);
     		liberaRecursosBD();
         }
 		catch(SQLException sqle){
