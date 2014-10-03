@@ -98,8 +98,8 @@ public class Splash extends JFrame {
 						
 	}
 	
-	private void Cerrar()
-	{
+	
+	private void Cerrar() {
 		this.setVisible(false);
 	}
 }
