@@ -65,6 +65,7 @@ public class Splash extends JFrame {
 		fondoFrame.setBorder(new LineBorder(new Color(0, 0, 0)));
 		fondoFrame.setBounds(0, 0, 241, 276);
 		contentPane.add(fondoFrame);
+		
 
 		new Thread()
 		{
