@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import com.mysql.jdbc.PreparedStatement;
 import entidades.Electrodomestico;
 import entidades.Lavarropas;
 import entidades.Television;
@@ -124,7 +125,7 @@ public class ElectrodomesticoAdapter {
         try
         {
             myconn = ConexionDB.GetConnection();
-            comando = myconn.createStatement();
+
             
         	float pb = e.getPrecioBase();
         	String col = e.getColor();
@@ -133,7 +134,14 @@ public class ElectrodomesticoAdapter {
         	float nothing = 0;
         	if(e instanceof Lavarropas){
         		float car = ((Lavarropas) e).getCarga();
-        		query = "INSERT INTO electrodomestico(precioBase, color, consumoEnergetico, peso, resolucion, sintonizador, carga) VALUES('"+pb+"', '"+col+"','"+con+"', '"+pes+"', '"+nothing+"', '"+nothing+"', '"+car+"')";
+                PreparedStatement preStmt = (PreparedStatement) myconn.prepareStatement("INSERT INTO electrodomestico(precioBase, color, consumoEnergetico, peso, resolucion, sintonizador, carga) VALUES(?,?,?,?,?)");
+        		preStmt.setFloat(1, pb);
+        		preStmt.setString(2, col);
+        		preStmt.setString(3, con);
+        		preStmt.setFloat(4, pes);
+        		preStmt.setFloat(5, nothing);
+        		preStmt.setFloat(6, nothing);
+        		preStmt.setFloat(7, car);
         	}
         	else if (e instanceof Television){
         		float res = ((Television) e).getResolucion();
@@ -145,7 +153,14 @@ public class ElectrodomesticoAdapter {
         			sinInt = 1;
         		else
         			sinInt = 0;
-        		query = "INSERT INTO electrodomestico(precioBase, color, consumoEnergetico, peso, resolucion, sintonizador, carga) VALUES('"+pb+"', '"+col+"','"+con+"', '"+pes+"', '"+res+"', '"+sinInt+"', '"+nothing+"')";
+        		PreparedStatement preStmt = (PreparedStatement) myconn.prepareStatement("INSERT INTO electrodomestico(precioBase, color, consumoEnergetico, peso, resolucion, sintonizador, carga) VALUES(?,?,?,?,?,?)");
+        		preStmt.setFloat(1, pb);
+        		preStmt.setString(2, col);
+        		preStmt.setString(3, con);
+        		preStmt.setFloat(4, pes);
+        		preStmt.setFloat(5, res);
+        		preStmt.setBoolean(6, sin);  
+        		preStmt.setFloat(7, nothing);
         	}
         	//registro = comando.executeQuery(query);
         	comando.execute(query);
@@ -191,9 +206,10 @@ public class ElectrodomesticoAdapter {
 	public void liberaRecursosBD(){
 		try{
 			
-			if (registro != null){
+
+			if(registro != null)
 				registro.close();
-			}
+			
 			comando.close();
 			myconn.close();
 		}

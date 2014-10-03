@@ -40,7 +40,8 @@ public class Splash extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Splash() {
+	public Splash() 
+		{
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(-8, -26, 241, 276);

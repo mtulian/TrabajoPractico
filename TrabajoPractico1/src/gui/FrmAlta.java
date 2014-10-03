@@ -277,7 +277,7 @@ public class FrmAlta extends JDialog {
 						case 1:{ 
 							float carga = Float.parseFloat(txtCarga.getText());
 								Lavarropas nuevoElectro = new Lavarropas(p,c,ce,pe,carga); 
-								ElectrodomesticoLogic.addOne(nuevoElectro);
+								//ElectrodomesticoLogic.addOne(nuevoElectro);
 								ElectrodomesticoLogic.addOneBD(nuevoElectro);
 							break;
 								}
@@ -285,7 +285,7 @@ public class FrmAlta extends JDialog {
 							float res = Float.parseFloat(txtResolucion.getText());
 							boolean sinto = cbxSintonizador.isSelected();
 								Television nuevoElectro = new Television(p,c,ce,pe,res,sinto);
-								ElectrodomesticoLogic.addOne(nuevoElectro);
+								//ElectrodomesticoLogic.addOne(nuevoElectro);
 								ElectrodomesticoLogic.addOneBD(nuevoElectro);
 							break;
 							}	
