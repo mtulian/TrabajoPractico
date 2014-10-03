@@ -119,11 +119,10 @@ public class FrmListado extends JDialog {
 				{	
 					int rta = JOptionPane.showConfirmDialog(null, "Seguro que desea eliminar el electrodomestico seleccionado?", "Aviso", JOptionPane.YES_NO_OPTION);
 					if(rta == 0) // Cambiar por Result del JOptionPane.
-					{
-						
-				
+					{									
 							int id = (int) tblElectrodomesticos.getValueAt(filaselec, 0);
 							ElectrodomesticoLogic.deleteOne(id);
+							//ElectrodomesticoLogic.deleteOneBD(id);
 							listado();
 					}
 				}
@@ -153,7 +152,7 @@ public class FrmListado extends JDialog {
 		});
 		btnModi.setBounds(399, 7, 52, 52);
 		panelBotones.add(btnModi);
-		btnModi.setIcon(new ImageIcon(FrmListado.class.getResource("/recursos/Modi.png")));
+		btnModi.setIcon(new ImageIcon(FrmListado.class.getResource("/recursos/modificar.png")));
 
 	}
 }

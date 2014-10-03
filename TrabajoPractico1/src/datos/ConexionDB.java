@@ -18,9 +18,9 @@ public class ConexionDB {
         {
         	  //Cargar el driver --> com.mysql.jdbc.Driver (Nombre correspondiente a BD MySQL.)
         	  Class.forName("com.mysql.jdbc.Driver");
-              String servidor = "jdbc:mysql://localhost/TrabajoPractico";   //Dirección de la BD.
-              String usuarioDB="root";									    //Usuario de la BD.
-              conexion= DriverManager.getConnection(servidor,usuarioDB,""); //El 3er parametro corresponde a la contraseña.
+              String servidor = "jdbc:mysql://localhost/tp_java";   //Dirección de la BD.
+              String usuarioDB="root";									    				      //Usuario de la BD.
+              conexion= DriverManager.getConnection(servidor,usuarioDB,"");  //El 3er parametro corresponde a la contraseña.
         }
         catch(ClassNotFoundException ex)
         {

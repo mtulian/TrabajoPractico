@@ -56,7 +56,7 @@ public class Splash extends JFrame {
 		Progreso.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Progreso.setIndeterminate(true);
 		Progreso.setBackground(Color.WHITE);
-		Progreso.setBounds(48, 232, 146, 14);
+		Progreso.setBounds(50, 227, 146, 14);
 		contentPane.add(Progreso);
 		this.setLocationRelativeTo(null);
 		setVisible(true);
@@ -82,14 +82,11 @@ public class Splash extends JFrame {
 					}
 				}*/
 				try {
-					sleep(10000);
+					sleep(1000);
 					Cerrar();
-					//SE INSTANCIA EL MENÚ
-					//
-					//
-					//
-					//
-					//SE PONE EN VISIBLE
+					FrmPrincipal frmPrincipal = new FrmPrincipal();
+					frmPrincipal.setVisible(true);
+					
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
