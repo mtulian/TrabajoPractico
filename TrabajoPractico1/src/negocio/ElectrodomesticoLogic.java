@@ -18,7 +18,7 @@ public class ElectrodomesticoLogic {
 	}	
 	*/
 	public static ArrayList<Electrodomestico> getall(){
-		return adap.getAll();
+		return ElectrodomesticoAdapter.getAll();
 	}
 	public static ArrayList<Electrodomestico> getallBD(){
 		return adap.getAllBD();

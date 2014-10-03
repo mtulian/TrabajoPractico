@@ -32,6 +32,11 @@ public Television(float p,String c,String ce,float pe,float res,boolean sinto){
 	sintonizadorTDT = sinto;	
 }
 
+public Television(int id,float p,String c,String ce,float pe,float res,boolean sinto){
+	super(id,p,c,ce,pe);
+	resolucion = res;
+	sintonizadorTDT = sinto;	
+}
 
 @Override
 	public float precioFinal() {

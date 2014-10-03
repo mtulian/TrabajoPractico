@@ -22,6 +22,11 @@ public Lavarropas(float p,String c,String ce,float pe,float carga) {
 	super(p,c,ce,pe);
 	this.carga = carga;
 }
+public Lavarropas(int id,float p,String c,String ce,float pe,float carga) {
+	super(id,p,c,ce,pe);
+	this.carga = carga;
+}
+
 
 //metodos
 public float precioFinal(){

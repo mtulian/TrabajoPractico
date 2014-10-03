@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import entidades.Electrodomestico;
 import entidades.Lavarropas;
 import entidades.Television;
@@ -75,29 +74,50 @@ public class ElectrodomesticoAdapter {
 	}
 	*/
 	public ArrayList<Electrodomestico> getAllBD(){
-		ArrayList<Electrodomestico> prueba = new ArrayList<Electrodomestico>();      
-        try
-        {
-            myconn = ConexionDB.GetConnection();
-            comando = myconn.createStatement();
-    		registro = comando.executeQuery("SELECT * FROM ELECTRODOMESTICO");
-    		while(registro.next())
-    		{
-    		int id = Integer.parseInt(registro.getString("ID_Elec"));
-    		float p = Float.parseFloat(registro.getString("precioBase"));
-    		String c = registro.getString("color");
-    		String ce = registro.getString("consumoE");
-    		float pe = Float.parseFloat(registro.getString("peso"));
-    		//Television e = new Television(p,c,ce,pe); despues lo vemos
-    		//prueba.add(e);
-    		}
-    	
-    	liberaRecursosBD();
-
-        }
-		catch(SQLException sqle){
-			System.out.println(sqle.getMessage());
+		ArrayList<Electrodomestico> prueba = new ArrayList<Electrodomestico>();     
+		
+		String sql="select id, cod_postal, nombre from localidades";
+		Statement sentencia=null;
+		ResultSet registro =null;
+		try {			
+			sentencia= ConexionDB.GetConnection().createStatement();
+			registro= sentencia.executeQuery(sql);
+			
+			while(registro.next()){
+				Electrodomestico e;
+				int id = Integer.parseInt(registro.getString("id"));
+	    		float p = Float.parseFloat(registro.getString("precioBase"));
+	    		String c = registro.getString("color");
+	    		String ce = registro.getString("consumoEnergetico");
+	    		float pe = Float.parseFloat(registro.getString("peso"));
+	    		float carga = Float.parseFloat(registro.getString("carga"));
+	    		float res = Float.parseFloat(registro.getString("resolucion"));
+	    		boolean sinto = Boolean.getBoolean(registro.getString("sintonizador"));
+	    		if(carga == 0)
+	    		{
+	    			 e = new Television(id, p, c, ce, pe, res, sinto);
+	    			
+	    		}
+	    		else {
+					 e = new Lavarropas(id, p, c, ce, pe, carga);
+				}
+	    		prueba.add(e);
+				
+			}					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally{
+			try{
+				if(registro!=null){registro.close();}
+				if(sentencia!=null && !sentencia.isClosed()){sentencia.close();}
+				ConexionDB.GetConnection().close();
 			}
+			catch (SQLException sqle){
+				sqle.printStackTrace();
+			}
+		}
+		
 		return prueba;
 	}
 	public void addOneBD(Electrodomestico e){
@@ -171,7 +191,9 @@ public class ElectrodomesticoAdapter {
 	public void liberaRecursosBD(){
 		try{
 			
-			registro.close();
+			if (registro != null){
+				registro.close();
+			}
 			comando.close();
 			myconn.close();
 		}

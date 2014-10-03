@@ -11,8 +11,9 @@ import entidades.Lavarropas;
 import entidades.Television;
 
 public class ModeloElectrodomestico implements TableModel{
-	public ArrayList<Electrodomestico> elec = ElectrodomesticoLogic.getall();
-	//public ArrayList<Electrodomestico> elec = ElectrodomesticoL.getallBD();
+	//public ArrayList<Electrodomestico> elec = ElectrodomesticoLogic.getall();
+	
+	public ArrayList<Electrodomestico> elec = ElectrodomesticoLogic.getallBD();
 	public List<String> nombreColumnas = new ArrayList<String>();
 	public List<TableModelListener> tableModelListeners = new ArrayList<TableModelListener>();
 	public ModeloElectrodomestico() {
