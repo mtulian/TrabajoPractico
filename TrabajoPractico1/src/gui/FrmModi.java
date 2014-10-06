@@ -74,7 +74,8 @@ public class FrmModi extends JDialog {
 		cbxSintonizador.setVisible(bool);
 	}	
 	public void cargarForm(int id){
-		elec = ElectrodomesticoLogic.getOne(id);
+		elec = ElectrodomesticoLogic.getOneBD(id);
+		//elec = ElectrodomesticoLogic.getOne(id); para coleccion
 		txtPrecioBase.setText(String.valueOf(elec.getPrecioBase()));
 		txtPeso.setText(String.valueOf(elec.getPeso()));
 		cbxColor.setSelectedItem(elec.getColor());
@@ -236,8 +237,8 @@ public class FrmModi extends JDialog {
 							((Television) elec).setResolucion(Float.parseFloat(txtResolucion.getText()));
 							((Television) elec).setSintonizadorTDT(cbxSintonizador.isSelected());
 						}
-						ElectrodomesticoLogic.update(elec);
-						//ElectrodomesticoLogic.updateOneDB(elec);
+						//ElectrodomesticoLogic.update(elec);
+						ElectrodomesticoLogic.updateOneDB(elec);
 						dispose();
 					}
 				}
