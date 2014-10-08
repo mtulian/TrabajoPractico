@@ -20,6 +20,7 @@ public class ElectrodomesticoAdapter {
 	Statement comando;
 	ResultSet registro;
 	String query =null;
+	PreparedStatement preStmt;
 	
 	//MÉTODOS DEL CATÁLOGO
 	public static ArrayList<Electrodomestico> getAll(){
@@ -115,7 +116,7 @@ public class ElectrodomesticoAdapter {
         	float nothing = 0;
         	if(e instanceof Lavarropas){
         		float car = ((Lavarropas) e).getCarga();
-                PreparedStatement preStmt = (PreparedStatement) myconn.prepareStatement("INSERT INTO electrodomestico(precioBase, color, consumoEnergetico, peso, resolucion, sintonizador, carga) VALUES(?,?,?,?,?)");
+                preStmt = (PreparedStatement) myconn.prepareStatement("INSERT INTO electrodomestico(precioBase, color, consumoEnergetico, peso, resolucion, sintonizador, carga) VALUES(?,?,?,?,?,?,?)");
         		preStmt.setFloat(1, pb);
         		preStmt.setString(2, col);
         		preStmt.setString(3, con);
@@ -134,7 +135,7 @@ public class ElectrodomesticoAdapter {
         			sinInt = 1;
         		else
         			sinInt = 0;
-        		PreparedStatement preStmt = (PreparedStatement) myconn.prepareStatement("INSERT INTO electrodomestico(precioBase, color, consumoEnergetico, peso, resolucion, sintonizador, carga) VALUES(?,?,?,?,?,?)");
+        		preStmt = (PreparedStatement) myconn.prepareStatement("INSERT INTO electrodomestico(precioBase, color, consumoEnergetico, peso, resolucion, sintonizador, carga) VALUES(?,?,?,?,?,?,?)");
         		preStmt.setFloat(1, pb);
         		preStmt.setString(2, col);
         		preStmt.setString(3, con);
@@ -144,7 +145,8 @@ public class ElectrodomesticoAdapter {
         		preStmt.setFloat(7, nothing);
         	}
         	//registro = comando.executeQuery(query);
-        	comando.execute(query);
+        	//comando.execute(query);
+        	preStmt.execute();
     		liberaRecursosBD();
         }
 		catch(SQLException sqle){
@@ -154,7 +156,8 @@ public class ElectrodomesticoAdapter {
 	public void deleteOneBD(int id){
         try
         {
-    		registro = comando.executeQuery("DELETE * FROM ELECTRODOMESTICO WHERE id=id");
+        	preStmt = (PreparedStatement) myconn.prepareStatement("DELETE * FROM ELECTRODOMESTICO WHERE ?=id");
+        	preStmt.setInt(1, id);
     		liberaRecursosBD();
         }
 		catch(SQLException sqle){
@@ -189,8 +192,10 @@ public class ElectrodomesticoAdapter {
 			
 			if(registro != null)
 				registro.close();
-			comando.close();
-			myconn.close();
+			if(comando != null)
+				comando.close();
+			if(myconn != null)
+				myconn.close();
 		}
 		catch(SQLException sqle){
 			System.out.println(sqle.getMessage());
