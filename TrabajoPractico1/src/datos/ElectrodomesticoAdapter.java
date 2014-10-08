@@ -19,6 +19,7 @@ public class ElectrodomesticoAdapter {
 	Statement comando;
 	ResultSet registro;
 	String query =null;
+	PreparedStatement preStmt;
 	
 	
 	//MÉTODOS DE LA BASE DE DATOS
@@ -97,37 +98,7 @@ public class ElectrodomesticoAdapter {
 		}
 		return elec;
 	}
-	public void deleteOneBD(int id){
-		
-		String sql="delete from electrodomestico where id=?";
-		PreparedStatement sentencia=null;
-		int i;
-		try {			
-			sentencia= (PreparedStatement) ConexionDB.getInstancia().getConn().prepareStatement(sql);
-			sentencia.setInt(1, id);
-			i = sentencia.executeUpdate();
-		
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		finally{
-			try{
-				if(sentencia!=null && !sentencia.isClosed()){sentencia.close();}
-				ConexionDB.getInstancia().CloseConn();
-			}
-			catch (SQLException sqle){
-				sqle.printStackTrace();
-			}
-		}
-		/*try
-        {
-    		registro = comando.executeQuery("DELETE * FROM ELECTRODOMESTICO WHERE id=id");
-    		liberaRecursosBD();
-        }
-		catch(SQLException sqle){
-			System.out.println(sqle.getMessage());
-		}*/
-	}
+	
 	
 	public void addOneBD(Electrodomestico elec){
 		
@@ -174,71 +145,55 @@ public class ElectrodomesticoAdapter {
 			}
 			
 		}
-		/* try
+	}
+
+	
+	public void deleteOneBD(int id){
+        try
         {
-            PreparedStatement preStmt = null;
-        	myconn = ConexionDB.getInstancia().getConn();
-            
+        	preStmt = (PreparedStatement) myconn.prepareStatement("DELETE * FROM ELECTRODOMESTICO WHERE id=?");
+        	preStmt.setInt(1, id);
+        	preStmt.execute();
+    		liberaRecursosBD();
+        }
+		catch(SQLException sqle){
+			System.out.println(sqle.getMessage());
+		}
+	}
+	public void updateOneBD(Electrodomestico e){	
+        try
+        {
+        	int id = e.getId();
         	float pb = e.getPrecioBase();
         	String col = e.getColor();
         	String con = e.getConsumoEnergético();
         	float pes = e.getPeso();
-        	float nothing = 0;
         	if(e instanceof Lavarropas){
         		float car = ((Lavarropas) e).getCarga();
-                preStmt = (PreparedStatement) myconn.prepareStatement("INSERT INTO electrodomestico(precioBase, color, consumoEnergetico, peso, resolucion, sintonizador, carga) VALUES(?,?,?,?,?,?,?)");
+        		preStmt = (PreparedStatement) myconn.prepareStatement("UPDATE ELECTRODOMESTICO SET(precioBase=?, color=?, consumoEnergético=?, peso=?, resolucion=?, sintonizador=?, carga=?) WHERE id=?");
         		preStmt.setFloat(1, pb);
         		preStmt.setString(2, col);
         		preStmt.setString(3, con);
         		preStmt.setFloat(4, pes);
-        		preStmt.setFloat(5, nothing);
-        		preStmt.setFloat(6, nothing);
+        		preStmt.setFloat(5, 0);
+        		preStmt.setFloat(6, 0);
         		preStmt.setFloat(7, car);
+            	preStmt.setInt(8, id);    		
         	}
         	else if (e instanceof Television){
         		float res = ((Television) e).getResolucion();
         		boolean sin = ((Television)e).isSintonizadorTDT();
-        		
-        		//En la base de datos los valores booleanos estan dados por 1 y 0, es necesario realizar la conversión.
-        		int sinInt;
-        		if(sin)
-        			sinInt = 1;
-        		else
-        			sinInt = 0;
-        		preStmt = (PreparedStatement) myconn.prepareStatement("INSERT INTO electrodomestico(precioBase, color, consumoEnergetico, peso, resolucion, sintonizador, carga) VALUES(?,?,?,?,?,?,?)");
+        		preStmt = (PreparedStatement) myconn.prepareStatement("UPDATE ELECTRODOMESTICO SET(precioBase=?, color=?, consumoEnergético=?, peso=?, resolucion=?, sintonizador=?, carga=?) WHERE id=?");
         		preStmt.setFloat(1, pb);
         		preStmt.setString(2, col);
         		preStmt.setString(3, con);
         		preStmt.setFloat(4, pes);
         		preStmt.setFloat(5, res);
         		preStmt.setBoolean(6, sin);  
-        		preStmt.setFloat(7, nothing);
+        		preStmt.setFloat(7, 0);
+            	preStmt.setInt(8, id);  
         	}
-        	//registro = comando.executeQuery(query);
-        	registro = comando.execute(query);
-    		liberaRecursosBD()
-        }
-		catch(SQLException sqle){
-			System.out.println(sqle.getMessage());
-		};*/
-	}
-	public void updateOneBD(Electrodomestico e){	
-        try
-        {
-        	float pb = e.getPrecioBase();
-        	String col = e.getColor();
-        	String con = e.getConsumoEnergético();
-        	float pes = e.getPeso();
-        	if(e instanceof Lavarropas){
-        		float car = ((Lavarropas) e).getCarga();
-        		query = "UPDATE ELECTRODOMESTICO SET(precioBase=pb, color=col, consumoEnergético=con, peso=pes, carga=car) WHERE id=id";
-        	}
-        	else if (e instanceof Television){
-        		float res = ((Television) e).getResolucion();
-        		boolean sin = ((Television)e).isSintonizadorTDT();
-        		query = "UPDATE ELECTRODOMESTICO SET(precioBase=pb, color=col, consumoEnergético=con, peso=pes, resolucion=res, sintonizador=sin) WHERE id=id";
-        	}
-    		registro = comando.executeQuery(query);
+        	preStmt.execute();
     		liberaRecursosBD();
         }
 		catch(SQLException sqle){
@@ -247,19 +202,50 @@ public class ElectrodomesticoAdapter {
 	}	
 	public void liberaRecursosBD(){
 		try{
-			
-
 			if(registro != null)
 				registro.close();
-			
-			comando.close();
-			myconn.close();
+			if(comando != null)
+				comando.close();
+			if(myconn != null)
+				myconn.close();
 		}
 		catch(SQLException sqle){
 			System.out.println(sqle.getMessage());
 		}
 	}
 	
+	
+	/*public void deleteOneBD(int id){
+	
+	String sql="delete from electrodomestico where id=?";
+	PreparedStatement sentencia=null;
+	int i;
+	try {			
+		sentencia= (PreparedStatement) ConexionDB.getInstancia().getConn().prepareStatement(sql);
+		sentencia.setInt(1, id);
+		i = sentencia.executeUpdate();
+	
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	finally{
+		try{
+			if(sentencia!=null && !sentencia.isClosed()){sentencia.close();}
+			ConexionDB.getInstancia().CloseConn();
+		}
+		catch (SQLException sqle){
+			sqle.printStackTrace();
+		}
+	}
+	/*try
+    {
+		registro = comando.executeQuery("DELETE * FROM ELECTRODOMESTICO WHERE id=id");
+		liberaRecursosBD();
+    }
+	catch(SQLException sqle){
+		System.out.println(sqle.getMessage());
+	}
+}*/
 	//MÉTODOS DEL CATÁLOGO
 
 		public static ArrayList<Electrodomestico> getAll(){
