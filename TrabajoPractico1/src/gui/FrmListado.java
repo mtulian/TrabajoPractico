@@ -22,6 +22,7 @@ import java.awt.Toolkit;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
+import datos.ElectrodomesticoAdapter;
 import entidades.Electrodomestico;
 import negocio.ModeloElectrodomestico;
 
@@ -36,8 +37,11 @@ import negocio.*;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.ListSelectionModel;
+
 import java.awt.SystemColor;
+
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
 public class FrmListado extends JDialog {
 
@@ -121,7 +125,7 @@ public class FrmListado extends JDialog {
 					if(rta == 0) // Cambiar por Result del JOptionPane.
 					{									
 							int id = (int) tblElectrodomesticos.getValueAt(filaselec, 0);
-							//ElectrodomesticoLogic.deleteOne(id);
+							//ElectrodomesticoLogic.deleteOne(id);							
 							ElectrodomesticoLogic.deleteOneBD(id);
 							listado();
 					}

@@ -3,10 +3,6 @@ package datos;
 
 import java.sql.*;
 
-import javax.swing.JOptionPane;
-
-
-
 public class ConexionDB {
     
 	static Connection conexion=null;
