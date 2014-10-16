@@ -20,6 +20,8 @@ public class ElectrodomesticoAdapter {
 	ResultSet registro;
 	String query =null;
 	PreparedStatement preStmt;
+
+	private int filasAfectadas;
 	
 	
 	//MÉTODOS DE LA BASE DE DATOS
@@ -102,29 +104,29 @@ public class ElectrodomesticoAdapter {
 	
 	public void addOneBD(Electrodomestico elec){
 		
-		String sql="insert into electrodomestico(id,precioBase,color,consumoEnergetico,peso,resolucion,sintonizador,carga) values (?,?,?,?,?,?,?,?)";
+		String sql="insert into electrodomestico(precioBase,color,consumoEnergetico,peso,resolucion,sintonizador,carga) values (?,?,?,?,?,?,?)";
 		PreparedStatement sentencia=null;
 		Connection conn= ConexionDB.getInstancia().getConn();
 		
 		try {
 			sentencia= (PreparedStatement) conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			sentencia.setInt(1, elec.getId());
-			sentencia.setFloat(2, elec.getPrecioBase());
-			sentencia.setString(3, elec.getColor());
-			sentencia.setString(4, elec.getConsumoEnergético());
-			sentencia.setFloat(5, elec.getPeso());
+			//sentencia.setInt(1, elec.getId());
+			sentencia.setFloat(1, elec.getPrecioBase());
+			sentencia.setString(2, elec.getColor());
+			sentencia.setString(3, elec.getConsumoEnergético());
+			sentencia.setFloat(4, elec.getPeso());
 			if (elec instanceof Lavarropas) {
-				sentencia.setFloat(6, 0);
-				sentencia.setBoolean(7, false);
-				sentencia.setFloat(8, ((Lavarropas) elec).getCarga());
+				sentencia.setFloat(5, 0);
+				sentencia.setBoolean(6, false);
+				sentencia.setFloat(7, ((Lavarropas) elec).getCarga());
 			}
 			else {
-				sentencia.setFloat(6, ((Television) elec).getResolucion());
-				sentencia.setBoolean(7,((Television) elec).isSintonizadorTDT());
-				sentencia.setFloat(8, 0);
+				sentencia.setFloat(5, ((Television) elec).getResolucion());
+				sentencia.setBoolean(6,((Television) elec).isSintonizadorTDT());
+				sentencia.setFloat(7, 0);
 			}
 			
-			int filasAfectadas=sentencia.executeUpdate();
+			setFilasAfectadas(sentencia.executeUpdate());
 			ResultSet cps= sentencia.getGeneratedKeys();
 			if(cps.next()){
 				int elecID=cps.getInt(1);
@@ -147,7 +149,7 @@ public class ElectrodomesticoAdapter {
 		}
 	}
 
-	
+	/*
 	public void deleteOneBD(int id){
         try
         {
@@ -159,7 +161,7 @@ public class ElectrodomesticoAdapter {
 		catch(SQLException sqle){
 			System.out.println(sqle.getMessage());
 		}
-	}
+	}*/
 	public void updateOneBD(Electrodomestico e){	
         try
         {
@@ -215,7 +217,7 @@ public class ElectrodomesticoAdapter {
 	}
 	
 	
-	/*public void deleteOneBD(int id){
+	public void deleteOneBD(int id){
 	
 	String sql="delete from electrodomestico where id=?";
 	PreparedStatement sentencia=null;
@@ -244,8 +246,8 @@ public class ElectrodomesticoAdapter {
     }
 	catch(SQLException sqle){
 		System.out.println(sqle.getMessage());
-	}
-}*/
+	}*/
+}
 	//MÉTODOS DEL CATÁLOGO
 
 		public static ArrayList<Electrodomestico> getAll(){
@@ -294,5 +296,11 @@ public class ElectrodomesticoAdapter {
 		}
 		public void update(Electrodomestico e){
 			elec.set(e.getId(), e);
+		}
+		public int getFilasAfectadas() {
+			return filasAfectadas;
+		}
+		public void setFilasAfectadas(int filasAfectadas) {
+			this.filasAfectadas = filasAfectadas;
 		}
 }

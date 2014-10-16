@@ -18,7 +18,6 @@ public class Validacion {
 	    	  e.consume();  // ignorar el evento de teclado
 	      }		
 	}
-	
 	public static boolean camposVacios(String precio,Object color, Object consumo,String peso, int tipo, String carga, String res)
 	{
 		boolean  valido=true;

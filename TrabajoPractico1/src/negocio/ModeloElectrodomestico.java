@@ -14,6 +14,15 @@ public class ModeloElectrodomestico implements TableModel{
 	//public ArrayList<Electrodomestico> elec = ElectrodomesticoLogic.getall();
 	
 	public ArrayList<Electrodomestico> elec = ElectrodomesticoLogic.getallBD();
+	public ArrayList<Electrodomestico> getElec() {
+		return elec;
+	}
+	public void setElec(ArrayList<Electrodomestico> elec) {
+		this.elec = elec;
+	}
+	public void deleteModelo(Electrodomestico e){
+		elec.remove(e);
+	}
 	public List<String> nombreColumnas = new ArrayList<String>();
 	public List<TableModelListener> tableModelListeners = new ArrayList<TableModelListener>();
 	public ModeloElectrodomestico() {
