@@ -101,7 +101,6 @@ public class ElectrodomesticoAdapter {
 		return elec;
 	}
 	
-	
 	public void addOneBD(Electrodomestico elec){
 		
 		String sql="insert into electrodomestico(precioBase,color,consumoEnergetico,peso,resolucion,sintonizador,carga) values (?,?,?,?,?,?,?)";
