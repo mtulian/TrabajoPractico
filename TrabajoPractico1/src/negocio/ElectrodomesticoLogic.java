@@ -8,6 +8,7 @@ import entidades.*;
 public class ElectrodomesticoLogic {
 	
 	static ElectrodomesticoAdapter adap = new ElectrodomesticoAdapter();
+	static CatalogoAdapter adapC = new CatalogoAdapter();
 	
 	//BD
 	public static Electrodomestico getOneBD(int id){
@@ -28,22 +29,22 @@ public class ElectrodomesticoLogic {
 	
 	//Colecciones
 	public static void addOne(Electrodomestico e){
-		adap.addOne(e);
+		adapC.addOne(e);
 	}
 	public static void deleteOne(Electrodomestico e){
-		adap.deleteOne(e);
+		adapC.deleteOne(e);
 	}
 	public static void deleteOne(int id){
-		adap.deleteOne(id);
+		adapC.deleteOne(id);
 	}
 	public static void update(Electrodomestico e){
-		adap.update(e);
+		adapC.update(e);
 	}
 	public static ArrayList<Electrodomestico> getall(){
-		return ElectrodomesticoAdapter.getAll();
+		return CatalogoAdapter.getAll();
 	}
 	public static Electrodomestico getOne(int id){
-		return adap.getOne(id);
+		return adapC.getOne(id);
 	}
 	
 	
