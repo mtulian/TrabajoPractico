@@ -124,11 +124,11 @@ public class ElectrodomesticoAdapter {
 			}
 			
 			setFilasAfectadas(sentencia.executeUpdate());
-			ResultSet cps= sentencia.getGeneratedKeys();
-			if(cps.next()){
-				int elecID=cps.getInt(1);
-				elec.setId(elecID);
-			}
+			//ResultSet cps= sentencia.getGeneratedKeys();
+			//if(cps.next()){
+			//	int elecID=cps.getInt(1);
+			//	elec.setId(elecID);
+			//}
 			
 			
 		} catch (SQLException e) {
