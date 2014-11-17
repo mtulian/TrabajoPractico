@@ -66,6 +66,11 @@ public class FrmPrincipal extends JFrame {
 		contentPane.add(btnAlta);
 		
 		JButton btnListado = new JButton("");
+		btnListado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		btnListado.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

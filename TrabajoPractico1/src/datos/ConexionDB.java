@@ -22,11 +22,12 @@ public class ConexionDB {
 	public ConexionDB() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	public Connection getConn(){
 		try {
 			if(conn==null || !conn.isValid(3)){
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
-				conn=DriverManager.getConnection(dbUrl,dbUser,dbPassword);	
+				conn=DriverManager.getConnection(dbUrl,dbUser, dbPassword);	
 			}
 			
 		} catch (InstantiationException e) {

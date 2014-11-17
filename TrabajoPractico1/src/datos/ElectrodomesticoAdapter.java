@@ -13,7 +13,8 @@ import entidades.Television;
 
 public class ElectrodomesticoAdapter {
 	static ArrayList<Electrodomestico> elec = new ArrayList<Electrodomestico>();
-	Connection myconn;
+	
+	Connection myconn = ConexionDB.getInstancia().getConn();
 	Statement comando;
 	ResultSet registro;
 	String query =null;
@@ -52,14 +53,17 @@ public class ElectrodomesticoAdapter {
 			e.printStackTrace();
 		}
 		finally{
+			
+			/*
 			try{
 				if(registro!=null){registro.close();}
-				if(sentencia!=null && !sentencia.isClosed()){sentencia.close();}
+				if(myconn!=null && !myconn.isClosed()){myconn.close();}
 				ConexionDB.getInstancia().getConn().close();
 			}
 			catch (SQLException sqle){
 				sqle.printStackTrace();
 			}
+			*/
 		}
 		
 		return prueba;
@@ -90,14 +94,17 @@ public class ElectrodomesticoAdapter {
 			e.printStackTrace();
 		}
 		finally{
+			
+			/*
 			try{
 				if(rs!=null){rs.close();}
-				if(sentencia!=null && !sentencia.isClosed()){sentencia.close();}
+				if(myconn!=null && !myconn.isClosed()){myconn.close();}
 				ConexionDB.getInstancia().CloseConn();
 			}
 			catch (SQLException sqle){
 				sqle.printStackTrace();
-			}
+			}*/
+			
 		}
 		return elec;
 	}
@@ -105,8 +112,13 @@ public class ElectrodomesticoAdapter {
 		
 		String sql="insert into electrodomestico(precioBase,color,consumoEnergetico,peso,resolucion,sintonizador,carga) values (?,?,?,?,?,?,?)";
 		PreparedStatement sentencia=null;
+
 		Connection conn= ConexionDB.getInstancia().getConn();
+
 		try {
+
+			sentencia= (PreparedStatement) myconn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			//sentencia.setInt(1, elec.getId());
 			sentencia= (PreparedStatement) conn.prepareStatement(sql);
 			sentencia.setFloat(1, elec.getPrecioBase());
 			sentencia.setString(2, elec.getColor());
@@ -135,13 +147,16 @@ public class ElectrodomesticoAdapter {
 			e.printStackTrace();
 		}
 		finally{
+			
+			/*
 			try{
-				if(sentencia!=null && !sentencia.isClosed()){sentencia.close();}
+				if(myconn!=null && !myconn.isClosed()){myconn.close();}
 				ConexionDB.getInstancia().CloseConn();
 			}
 			catch (SQLException sqle){
 				sqle.printStackTrace();
 			}
+			*/
 			
 		}
 	}
@@ -218,6 +233,8 @@ public class ElectrodomesticoAdapter {
 		e.printStackTrace();
 	}
 	finally{
+		
+		/*
 		try{
 			if(sentencia!=null && !sentencia.isClosed()){sentencia.close();}
 			ConexionDB.getInstancia().CloseConn();
@@ -225,6 +242,8 @@ public class ElectrodomesticoAdapter {
 		catch (SQLException sqle){
 			sqle.printStackTrace();
 		}
+		*/
+		
 	}
 	/*try
     {
