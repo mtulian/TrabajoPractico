@@ -6,7 +6,7 @@ padding:0px;
 }
 body
 {
-background-image:url(C:\Users\Ever\workspace2\ElectrodomesticosWeb\WebContent\Imagenes\Fondo.jpg);
+background-image:url("C:\Users\Ever\git\TrabajoPractico\ElectrodomesticosWeb\WebContent\Imagenes\Fondo.jpg");
 }
 
 #general

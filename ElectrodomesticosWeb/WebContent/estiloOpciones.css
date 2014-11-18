@@ -1,0 +1,45 @@
+
+*
+{
+margin:0;
+padding:0px;
+}
+
+body
+{
+background-image:url("C:\Users\Ever\git\TrabajoPractico\ElectrodomesticosWeb\WebContent\Imagenes\Fondo.jpg");
+}
+
+#general
+{
+margin-top:200px;
+margin-left:200px;
+border-color:#000000;
+}
+
+#cuerpo
+{	
+text-align:left;
+float:left;
+width: 977px;
+height:360px;
+background-color:#CCCCCC;
+line-heigt:20px;	
+}
+
+#formulario
+{
+margin-top:40px;
+margin-left:420px;
+line-height:25px;
+}
+
+#boton
+{
+height: 40px;
+width: 60px;
+margin-left: 80px;
+}
+
+
+
