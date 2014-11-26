@@ -3,7 +3,6 @@
 	<name>ElectrodomesticosWeb</name>
 	<comment></comment>
 	<projects>
-		<project>TrabajoPractico</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

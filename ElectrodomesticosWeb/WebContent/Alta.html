@@ -5,20 +5,20 @@
 <link rel="stylesheet" type="text/css" href="estiloOpciones.css" />
 <title>Alta</title>
 
-<script language="javascript">
-function carga() { 
-document.getElementById("id").focus();
-} 
+<script language="text/javascript">
+
 </script> 
 </head>
 
 <body>
 <div id="general">
 
-<div align="left" id="cuerpo">
+<div id="cuerpo">
+<div id="controles">
+<a href="javascript:form1()"><div id="btn1"><img src="C:\Users\Ever\git\TrabajoPractico\ElectrodomesticosWeb\WebContent\Imagenes\lavarropa.png" alt="lavarropa" /></div></a>
+<a href="javascript:form2()"><div id="btn2"><img src="C:\Users\Ever\git\TrabajoPractico\ElectrodomesticosWeb\WebContent\Imagenes\televisor.png" alt="televisor" /></div></a>
 	<form method="post" action="" name="formAlta" id="formulario" >
-	<label>ID:			<input type="text" name="id" id="id"/></label><br/>
-	<label>PrecioBase:	<input type="text" name="precioBase" id="precioBase"/></label><br/>
+	<label>PrecioBase:<input type="text" name="precioBase" id="precioBase"/></label><br/>
 	<label>Color:
 	<select id="color" name="color">
 	<option value="blanco">Blanco</option>
@@ -39,13 +39,14 @@ document.getElementById("id").focus();
 	<label>Peso:<input type="text" name="peso" id="peso"/></label><br/>
 	<label>Resolución:<input type="text" name="resolucion" id="resolucion"/></label><br/>
 	<label>Sintonizador:<input type="text" name="sintonizador" id="sintonizador"/></label><br/>
-	<label>Carga:<input type="text" name="carga" id="carga"/></label><br/>
+	<label>Carga:<input type="text" name="carga" id="carga" readonly="readonly" /></label><br/>
 	<br />
-	<input id="boton" type="submit" name="submit" value="Enviar"/>
+	<input id="btnEnviar" type="submit" name="submit" value="Enviar" onclick=""/>
 	<br />
-	<br />
-	<p><a href="Principal.html">Menú principal</a></p> 
+	<br /> 
 	</form>
+<p id="link"><a href="Principal.html">Menú principal</a></p>
+</div>
 </div>
 
 </div>

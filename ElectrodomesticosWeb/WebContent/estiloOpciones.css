@@ -18,27 +18,69 @@ border-color:#000000;
 }
 
 #cuerpo
-{	
-text-align:left;
-float:left;
+{
 width: 977px;
 height:360px;
 background-color:#CCCCCC;
-line-heigt:20px;	
+line-heigt:40px;	
 }
 
-#formulario
+#controles
 {
-margin-top:40px;
-margin-left:420px;
-line-height:25px;
+text-align:center;
+width: 500px;
+height:300px;
+margin-left:350px;
 }
 
-#boton
+#btn1
+{
+float:left;
+width: 100px;
+height:100px;
+background-color: highlighttext;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+margin-top: 100px;
+}
+
+#btn2
+{
+float:left;
+width: 100px;
+height:100px;
+background-color: highlighttext;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+margin-top: 100px;
+margin-left: 10px;
+}
+
+form
+{
+text-align:justify;
+float:left;
+margin-top: 70px;
+margin-left: 20px;
+}
+
+img
+{
+margin-top:18px;
+}
+
+#link
+{
+margin-right: 290px;
+}
+
+#btnEnviar
 {
 height: 40px;
 width: 60px;
-margin-left: 80px;
+margin-left: 70px;
 }
 
 

@@ -2,9 +2,6 @@
     <wb-module deploy-name="ElectrodomesticosWeb">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <dependent-module archiveName="TrabajoPractico.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/TrabajoPractico/TrabajoPractico">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <property name="context-root" value="ElectrodomesticosWeb"/>
         <property name="java-output-path" value="/ElectrodomesticosWeb/build/classes"/>
     </wb-module>
