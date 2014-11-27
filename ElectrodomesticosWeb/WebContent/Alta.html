@@ -3,43 +3,65 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="estiloOpciones.css" />
-<title>Alta</title>
 
 <script type="text/javascript">
-btnEnviar.addEventListener(MouseEvent.CLICK,validar)
-function validar()
+btnEnviar.addEventListener(MouseEvent.CLICK,camposLlenos);
+
+function camposLlenos()
 {
 	var valido =true;
-	var mensaje="";
+	var mensaje="Los siguientes campos están vacios:\n";
 	
 	if(document.getElementById('precioBase').value == "")
 		{
 		valido = false;
-		mensaje ="* El campo precio base está vacio\n";
+		mensaje +="* precio base\n";
 		}
 
 	if(document.getElementById('peso').value == "")
 		{
 		valido = false;
-		mensaje +="* El campo peso está vacio\n";
+		mensaje +="* peso\n";
 		}
 
 	if(document.getElementById('resolucion').value == "")
 		{
 		valido = false;
-		mensaje +="* El campo resolución está vacio\n";
+		mensaje +="* resolución\n";
 		}
 
 	if(document.getElementById('carga').value == "")
 		{
 		valido = false;
-		mensaje +="* El campo carga está vacio\n";
+		mensaje +="* carga\n";
 		}
-
+	
 	if(!valido)
 		alert(mensaje);
 }
-</script> 
+
+function soloNumeros(e)
+{
+	key=e.KeyCode || e.which;
+	teclado= String.fromCharCode(key);
+	numero="0123456789";
+	especiales="8-37-38-46";
+	teclado_especial = false;
+	
+	for(var i in especiales)
+		{
+			if(key==especiales[i]){
+				teclado_especial = true;
+			}
+		}
+	
+	if(numero.indexOf(teclado)==-1 && !teclado_especial){
+		return false;		
+	}
+}
+</script>
+
+<title>Alta</title>
 </head>
 
 <body>
@@ -50,7 +72,7 @@ function validar()
 <a href=""><div id="btn1"><img src="C:\Users\Ever\git\TrabajoPractico\ElectrodomesticosWeb\WebContent\Imagenes\lavarropa.png" alt="lavarropa" /></div></a>
 <a href=""><div id="btn2"><img src="C:\Users\Ever\git\TrabajoPractico\ElectrodomesticosWeb\WebContent\Imagenes\televisor.png" alt="televisor" /></div></a>
 	<form method="post" action="" name="formAlta" id="formulario" >
-	<label>PrecioBase:<input type="text" name="precioBase" id="precioBase"/></label><br/>
+	<label>PrecioBase:<input type="text" name="precioBase" id="precioBase" onkeypress="return soloNumeros(event)"/></label><br/>
 	<label>Color:
 	<select id="color" name="color">
 	<option value="blanco">Blanco</option>
@@ -68,12 +90,12 @@ function validar()
 	<option value="E">E</option>
 	<option value="F">F</option>
 	</select></label><br/>
-	<label>Peso:<input type="text" name="peso" id="peso"/></label><br/>
-	<label>Resolución:<input type="text" name="resolucion" id="resolucion"/></label><br/>
+	<label>Peso:<input type="text" name="peso" id="peso" onkeypress="return soloNumeros(event)"/></label><br/>
+	<label>Resolución:<input type="text" name="resolucion" id="resolucion" onkeypress="return soloNumeros(event)"/></label><br/>
 	<input type="checkbox" name="sintonizador" id="sintonizador"> Sintonizador<br>
-	<label>Carga:<input type="text" name="carga" id="carga" /></label><br/>
+	<label>Carga:<input type="text" name="carga" id="carga" onkeypress="return soloNumeros(event)"/></label><br/>
 	<br />
-	<input id="btnEnviar" type="submit" name="submit" value="Guardar" onclick="validar()"/>
+	<input id="btnEnviar" type="submit" name="submit" value="Guardar" onclick="camposLlenos()"/>
 	<br />
 	<br /> 
 	</form>
