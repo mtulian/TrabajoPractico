@@ -4,9 +4,10 @@
 margin:0;
 padding:0px;
 }
-body
-{
-background-image:url("C:\Users\Ever\git\TrabajoPractico\ElectrodomesticosWeb\WebContent\Imagenes\Fondo.jpg");
+
+body {
+	background-color: black;
+    background-image: url("Imagenes/bushed1.png");
 }
 
 #general

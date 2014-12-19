@@ -6,7 +6,10 @@
 
 <script type="text/javascript">
 btnEnviar.addEventListener(MouseEvent.CLICK,camposLlenos);
-
+function carga() //Lleva el cursor al primer campo de texto.
+{
+	document.getElementById("precioBase").focus();
+	}
 function camposLlenos()
 {
 	var valido =true;
@@ -64,7 +67,7 @@ function soloNumeros(e)
 <title>Alta</title>
 </head>
 
-<body>
+<body onload="carga()">
 <div id="general">
 
 <div id="cuerpo">
