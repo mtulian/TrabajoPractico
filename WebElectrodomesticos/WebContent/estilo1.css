@@ -1,0 +1,86 @@
+
+*
+{
+margin:0;
+padding:0px;
+}
+
+body {
+	background-color: black;
+    background-image: url("Imagenes/bushed1.png");
+}
+
+#general
+{
+margin-left:200px;
+border-style:solid;
+border-width:1px;
+border-color:#000000;
+}
+
+#cabecera
+{
+float:left;
+width: 977px;
+height:229px;
+background-color:#CCCCCC;
+}
+
+#cuerpo
+{
+text-align:center;
+float:left;
+width: 977px;
+height:340px;
+background-color:#CCCCCC;
+}
+
+#btn
+{
+text-align:center;
+float: left;
+margin-right:5px;
+background-color:#FFFFFF;
+height:150px;
+width:150px;
+}
+
+#botones
+{
+margin-top:95px;
+margin-left:181px;
+}
+
+#btn
+{
+-webkit-transition: width height 1.0s;
+margin-top:11px;
+}
+
+#btn:hover
+{
+z-index:2;
+cursor:pointer;
+background-color:#FFBE9F;
+}
+
+#img
+{
+margin-top:11px;
+}
+
+#img:hover
+{
+width:133px;
+height:133px;
+}
+
+
+#pie
+{
+float:left;
+width: 977px;
+height:70px;
+background-color:#999999
+}
+
