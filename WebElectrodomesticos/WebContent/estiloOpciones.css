@@ -86,4 +86,19 @@ div#html5
 	float: right;
 }
 
+#btn1:focus
+{
+	border-color: orange;
+	border-width: 10px;
+	border-left-style: solid;
+}
+
+#btn2:focus
+{
+	border-color: orange;
+	border-width: 10px;
+	border-left-style: solid;
+}
+
+
 

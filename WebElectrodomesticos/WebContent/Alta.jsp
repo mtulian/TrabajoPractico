@@ -1,14 +1,26 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" 
+	import="java.sql.Connection"
+	import="java.sql.DriverManager"
+	import="java.sql.ResultSet"
+	import="java.sql.Statement"
+	import="java.sql.SQLException"
+	import="java.sql.PreparedStatement"
+	import="entidades.*"
+    %>
+<%@ include file="Conexion.jsp" %>
+   
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="estiloOpciones.css" />
-
 <script type="text/javascript">
 btnEnviar.addEventListener(MouseEvent.CLICK,camposLlenos);
 function carga() //Lleva el cursor al primer campo de texto.
 {
 	document.getElementById("precioBase").focus();
+	document.getElementById("btn2").focus();
 	}
 function formLavarropa()
 {
@@ -31,7 +43,7 @@ function formTelevision()
 function camposLlenos()
 {
 	var valido =true;
-	var mensaje="Los siguientes campos estÃ¡n vacios:\n";
+	var mensaje="Los siguientes campos están vacios:\n";
 	
 	if(document.getElementById('precioBase').value == "")
 		{
@@ -48,7 +60,7 @@ function camposLlenos()
 	if(document.getElementById('resolucion').value == "")
 		{
 		valido = false;
-		mensaje +="* resoluciÃ³n\n";
+		mensaje +="* resolución\n";
 		}
 
 	if(document.getElementById('carga').value == "")
@@ -59,6 +71,13 @@ function camposLlenos()
 	
 	if(!valido)
 		alert(mensaje);
+	else
+		{
+		document.getElementById('precioBase').value ="";
+		document.getElementById('peso').value ="";
+		document.getElementById('resolucion').value ="";
+		document.getElementById('carga').value ="";
+		}
 }
 
 function soloNumeros(e)
@@ -81,23 +100,64 @@ function soloNumeros(e)
 	}
 }
 </script>
-
-<title>Alta</title>
+<title>FormAlta</title>
 </head>
-
 <body onload="carga()">
-<div id="general">
-<%
-Television tv = new Television();
+<% 
+		/*
+		String precioBase = request.getParameter("precioBase");
+		String color = request.getParameter("color");
+		String consumoEnergetico = request.getParameter("consumoEnergetico");
+		String peso = request.getParameter("peso");
+		//Validamos si se trata de un televisor o un lavarropa
+		Electrodomestico elec;
+		if(request.getParameter("carga") == null || request.getParameter("carga") == "")
+		{
+			float resolucion = Float.parseFloat(request.getParameter("resolucion"));
+			boolean sintonizador = Boolean.parseBoolean(request.getParameter("sintonizador"));
+			elec = new Television();
+		}		
+		else
+		{
+			float carga = Float.parseFloat(request.getParameter("carga"));
+			elec = new Lavarropas();
+		}
+		String query ="insert into electrodomesticos(precioBase,color,consumoEnergetico,peso,resolucion,sintonizador,carga) values (?,?,?,?,?,?,?)";
+		PreparedStatement sentencia=null;
+		try {
 
+			sentencia= (PreparedStatement) conex.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			//sentencia.setInt(1, elec.getId());
+			sentencia= (PreparedStatement) conex.prepareStatement(query);
+			sentencia.setFloat(1, elec.getPrecioBase());
+			sentencia.setString(2, elec.getColor());
+			sentencia.setString(3, elec.getConsumoEnergético());
+			sentencia.setFloat(4, elec.getPeso());
+			if (elec instanceof Lavarropas) {
+				sentencia.setFloat(5, 0);
+				sentencia.setBoolean(6, false);
+				sentencia.setFloat(7, ((Lavarropas) elec).getCarga());
+			}
+			else {
+				sentencia.setFloat(5, ((Television) elec).getResolucion());
+				sentencia.setBoolean(6,((Television) elec).isSintonizadorTDT());
+				sentencia.setFloat(7, 0);
+			}
+			
+			sentencia.executeUpdate(query);
+		} 
+		catch (SQLException e) {e.printStackTrace();}
+		finally{}
+		*/
 
-ElectrodomesticoLogic.addOneBD(nuevoElectro)
 %>
+<div id="general">
+<h1 style=color:white>Alta Electrodomestico</h1>
 <div id="cuerpo">
 <div id="controles">
 <a href="#" onclick="formLavarropa()"><div id="btn1"><img src="Imagenes/lavarropa.png" alt="lavarropa" id="lavarropa"/></div></a>
 <a href="#" onclick="formTelevision()"><div id="btn2"><img src="Imagenes/televisor.png" alt="televisor" id="televisor" /></div></a>
-	<form method="post" action="" name="formAlta" id="formulario" >
+	<form method="post" action="Guardar" name="formAlta" id="formulario" >
 	<label>PrecioBase:<input type="text" name="precioBase" id="precioBase" onkeypress="return soloNumeros(event)"/></label><br/>
 	<label>Color:
 	<select id="color" name="color">
@@ -117,7 +177,7 @@ ElectrodomesticoLogic.addOneBD(nuevoElectro)
 	<option value="F">F</option>
 	</select></label><br/>
 	<label>Peso:<input type="text" name="peso" id="peso" onkeypress="return soloNumeros(event)"/></label><br/>
-	<label id="lblResolucion">ResoluciÃ³n:<input type="text" name="resolucion" id="resolucion" onkeypress="return soloNumeros(event)"/></label><br/>
+	<label id="lblResolucion">Resolución:<input type="text" name="resolucion" id="resolucion" onkeypress="return soloNumeros(event)"/></label><br/>
 	<input type="checkbox" name="sintonizador" id="sintonizador"><label id="lblSintonizador">Sintonizador</label><br>
 	<label id="lblCarga" style="visibility:hidden">Carga:<input type="text" name="carga" id="carga" onkeypress="return soloNumeros(event)" style="visibility:hidden"/></label><br/>
 	<br />
@@ -125,7 +185,7 @@ ElectrodomesticoLogic.addOneBD(nuevoElectro)
 	<br />
 	<br /> 
 	</form>
-<p id="link"><a href="Principal.html">MenÃº principal</a></p>
+<p id="link"><a href="Principal.html">Menú principal</a></p>
 </div>
 </div>
 
