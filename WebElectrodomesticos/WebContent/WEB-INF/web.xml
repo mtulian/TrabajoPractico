@@ -11,26 +11,6 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>servletWeb</display-name>
-    <servlet-name>servletWeb</servlet-name>
-    <servlet-class>MyServlets.servletWeb</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>servletWeb</servlet-name>
-    <url-pattern>/servletW</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>servletAlta</display-name>
-    <servlet-name>servletAlta</servlet-name>
-    <servlet-class>MyServlets.servletAlta</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>servletAlta</servlet-name>
-    <url-pattern>/servletAlta</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>Guardar</display-name>
     <servlet-name>Guardar</servlet-name>
     <servlet-class>controlador.Guardar</servlet-class>

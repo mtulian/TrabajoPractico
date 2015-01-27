@@ -103,54 +103,6 @@ function soloNumeros(e)
 <title>FormAlta</title>
 </head>
 <body onload="carga()">
-<% 
-		/*
-		String precioBase = request.getParameter("precioBase");
-		String color = request.getParameter("color");
-		String consumoEnergetico = request.getParameter("consumoEnergetico");
-		String peso = request.getParameter("peso");
-		//Validamos si se trata de un televisor o un lavarropa
-		Electrodomestico elec;
-		if(request.getParameter("carga") == null || request.getParameter("carga") == "")
-		{
-			float resolucion = Float.parseFloat(request.getParameter("resolucion"));
-			boolean sintonizador = Boolean.parseBoolean(request.getParameter("sintonizador"));
-			elec = new Television();
-		}		
-		else
-		{
-			float carga = Float.parseFloat(request.getParameter("carga"));
-			elec = new Lavarropas();
-		}
-		String query ="insert into electrodomesticos(precioBase,color,consumoEnergetico,peso,resolucion,sintonizador,carga) values (?,?,?,?,?,?,?)";
-		PreparedStatement sentencia=null;
-		try {
-
-			sentencia= (PreparedStatement) conex.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-			//sentencia.setInt(1, elec.getId());
-			sentencia= (PreparedStatement) conex.prepareStatement(query);
-			sentencia.setFloat(1, elec.getPrecioBase());
-			sentencia.setString(2, elec.getColor());
-			sentencia.setString(3, elec.getConsumoEnergético());
-			sentencia.setFloat(4, elec.getPeso());
-			if (elec instanceof Lavarropas) {
-				sentencia.setFloat(5, 0);
-				sentencia.setBoolean(6, false);
-				sentencia.setFloat(7, ((Lavarropas) elec).getCarga());
-			}
-			else {
-				sentencia.setFloat(5, ((Television) elec).getResolucion());
-				sentencia.setBoolean(6,((Television) elec).isSintonizadorTDT());
-				sentencia.setFloat(7, 0);
-			}
-			
-			sentencia.executeUpdate(query);
-		} 
-		catch (SQLException e) {e.printStackTrace();}
-		finally{}
-		*/
-
-%>
 <div id="general">
 <h1 style=color:white>Alta Electrodomestico</h1>
 <div id="cuerpo">

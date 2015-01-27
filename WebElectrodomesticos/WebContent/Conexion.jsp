@@ -7,6 +7,7 @@
 %>
 
 <%
+
 Connection conex =null;
 Statement sql = null;
 try{
@@ -16,4 +17,6 @@ try{
 }catch(Exception e){
 
 }
+
+
 %>

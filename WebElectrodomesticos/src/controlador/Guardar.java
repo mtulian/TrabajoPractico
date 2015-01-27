@@ -1,7 +1,6 @@
 package controlador;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
 
 import entidades.Electrodomestico;
@@ -48,66 +48,52 @@ public class Guardar extends HttpServlet {
 		String color = request.getParameter("color");
 		String consumoEnergetico = request.getParameter("consumoEnergetico");
 		String peso = request.getParameter("peso");
-		//Validamos si se trata de un televisor o un lavarropa
 		
-		Electrodomestico elec= new Electrodomestico();
-		
-		elec.setPrecioBase(Float.parseFloat(precioBase));
-		elec.setColor(color);
-		elec.setConsumoEnergetico(consumoEnergetico);
-		elec.setPeso(Float.parseFloat(peso));
-		
+		String query ="insert into electrodomesticos(precioBase,color,consumoEnergetico,peso,resolucion,sintonizador,carga) values (precioBase,?,?,?,?,?,?)";
+		Statement s;
+		try {
+			s = (Statement) Conexion.GetConnection().createStatement();
+			ResultSet rs=(ResultSet) s.executeQuery(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		/*
+		try {
+			
+
+			sentencia.setString(2, color);
+			sentencia.setString(3, consumoEnergetico);
+			sentencia.setFloat(4,Float.parseFloat(peso));
+
+		//Validamos si se trata de un televisor o un lavarropa	
+			
 		if(request.getParameter("carga") == null || request.getParameter("carga") == "")
 		{
 			String resolucion = request.getParameter("resolucion");
-			String sintonizador = request.getParameter("sintonizador");
-			elec = new Television();
-			((Television) elec).setResolucion(Float.parseFloat(resolucion));
-			((Television) elec).setSintonizadorTDT(Boolean.parseBoolean(sintonizador));			
+			String sintonizador = request.getParameter("sintonizador");	
+			
+			sentencia.setFloat(5, Float.parseFloat(resolucion));
+			sentencia.setBoolean(6,Boolean.parseBoolean(sintonizador));
+			sentencia.setFloat(7, 0);
 		}		
 		else
 		{
 			String carga = request.getParameter("carga");
-			elec = new Lavarropas();
-			((Lavarropas) elec).setCarga(Float.parseFloat(carga));
+			
+			sentencia.setFloat(5, 0);
+			sentencia.setBoolean(6, false);
+			sentencia.setFloat(7, Float.parseFloat(carga));
 		}
-				
-		String query ="insert into electrodomesticos(precioBase,color,consumoEnergetico,peso,resolucion,sintonizador,carga) values (?,?,?,?,?,?,?)";
-		PreparedStatement sentencia=null;
-		try {
-			
-			Connection conex =null;
-			Statement sql = null;
-			try{
-				Class.forName("com.mysql.jdbc.Driver");
-				conex = (Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/basedatos");
-				sql = (Statement) conex.createStatement();
-			}catch(Exception e){
-			}
-			
-			sentencia= (PreparedStatement) conex.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-			//sentencia.setInt(1, elec.getId());
-			sentencia= (PreparedStatement) conex.prepareStatement(query);
-			sentencia.setFloat(1, elec.getPrecioBase());
-			sentencia.setString(2, elec.getColor());
-			sentencia.setString(3, elec.getConsumoEnergético());
-			sentencia.setFloat(4, elec.getPeso());
-			if (elec instanceof Lavarropas) {
-				sentencia.setFloat(5, 0);
-				sentencia.setBoolean(6, false);
-				sentencia.setFloat(7, ((Lavarropas) elec).getCarga());
-			}
-			else {
-				sentencia.setFloat(5, ((Television) elec).getResolucion());
-				sentencia.setBoolean(6,((Television) elec).isSintonizadorTDT());
-				sentencia.setFloat(7, 0);
-			}
-			
-			sentencia.executeUpdate(query);
+						
+
+		
 		} 
 		catch (SQLException e) {e.printStackTrace();}
 		finally{}
-		
+		*/
+
 	}
 	
 
