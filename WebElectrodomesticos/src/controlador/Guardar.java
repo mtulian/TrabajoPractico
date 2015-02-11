@@ -44,55 +44,39 @@ public class Guardar extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String precioBase = request.getParameter("precioBase");
-		String color = request.getParameter("color");
-		String consumoEnergetico = request.getParameter("consumoEnergetico");
-		String peso = request.getParameter("peso");
+		float precioBase =0;
+		String color ="";
+		String consumoEnergetico ="";
+		String peso ="";
+		String resolucion ="";
+		String sintonizador ="";	
 		
-		String query ="insert into electrodomesticos(precioBase,color,consumoEnergetico,peso,resolucion,sintonizador,carga) values (precioBase,?,?,?,?,?,?)";
-		Statement s;
+		if(request.getParameter("precioBase").trim() != null)
+			precioBase = Float.parseFloat(request.getParameter("precioBase").trim());
+		if(request.getParameter("color") != null)
+			color = request.getParameter("color");
+		if(request.getParameter("consumoEnergetico") != null)
+			consumoEnergetico = request.getParameter("consumoEnergetico");
+		if(request.getParameter("peso").trim() != null)
+			peso = request.getParameter("peso").trim();
+		if(request.getParameter("resolucion").trim() != null)
+			resolucion = request.getParameter("resolucion").trim();
+		if(request.getParameter("sintonizador") != null)
+			sintonizador =request.getParameter("sintonizador");
+		//String car = request.getParameter("carga").trim();
+		
+		
+		String query ="INSERT INTO electrodomestico(precioBase,color,consumoEnergetico,peso,resolucion,sintonizador,carga) VALUES ('"+precioBase+"','"+color+"','"+consumoEnergetico+"','"+peso+"','"+resolucion+"','"+sintonizador+"',null)";
+		Statement st;
 		try {
-			s = (Statement) Conexion.GetConnection().createStatement();
-			ResultSet rs=(ResultSet) s.executeQuery(query);
+			st = (Statement) Conexion.GetConnection().createStatement();
+			st.executeUpdate(query);
+			st.close();
+			Conexion.CloseConnection();		
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		/*
-		try {
-			
-
-			sentencia.setString(2, color);
-			sentencia.setString(3, consumoEnergetico);
-			sentencia.setFloat(4,Float.parseFloat(peso));
-
-		//Validamos si se trata de un televisor o un lavarropa	
-			
-		if(request.getParameter("carga") == null || request.getParameter("carga") == "")
-		{
-			String resolucion = request.getParameter("resolucion");
-			String sintonizador = request.getParameter("sintonizador");	
-			
-			sentencia.setFloat(5, Float.parseFloat(resolucion));
-			sentencia.setBoolean(6,Boolean.parseBoolean(sintonizador));
-			sentencia.setFloat(7, 0);
-		}		
-		else
-		{
-			String carga = request.getParameter("carga");
-			
-			sentencia.setFloat(5, 0);
-			sentencia.setBoolean(6, false);
-			sentencia.setFloat(7, Float.parseFloat(carga));
-		}
-						
-
-		
-		} 
-		catch (SQLException e) {e.printStackTrace();}
-		finally{}
-		*/
+		request.getRequestDispatcher("/Alta.jsp").forward(request, response);
 
 	}
 	

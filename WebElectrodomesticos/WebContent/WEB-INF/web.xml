@@ -19,4 +19,14 @@
     <servlet-name>Guardar</servlet-name>
     <url-pattern>/Guardar</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Mostrar</display-name>
+    <servlet-name>Mostrar</servlet-name>
+    <servlet-class>controlador.Mostrar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Mostrar</servlet-name>
+    <url-pattern>/Mostrar</url-pattern>
+  </servlet-mapping>
 </web-app>

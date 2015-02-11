@@ -63,11 +63,13 @@ function camposLlenos()
 		mensaje +="* resolución\n";
 		}
 
+	/*
 	if(document.getElementById('carga').value == "")
 		{
 		valido = false;
 		mensaje +="* carga\n";
 		}
+	*/
 	
 	if(!valido)
 		alert(mensaje);

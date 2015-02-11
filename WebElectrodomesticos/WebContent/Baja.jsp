@@ -19,6 +19,8 @@
 <body>
 <div id="general">
 <h1 style=color:white>Baja Electrodomestico</h1>
+
+<table border=1>
 <div id="cuerpo">
 </div>
 </div>
