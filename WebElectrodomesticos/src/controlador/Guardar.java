@@ -44,38 +44,44 @@ public class Guardar extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//hay problemas en el envio de los parametros, no toma los atributos float, arreglar eso.
+		
 		float precioBase =0;
 		String color ="";
 		String consumoEnergetico ="";
-		String peso ="";
-		String resolucion ="";
-		String sintonizador ="";	
+		float peso =0;
+		float resolucion =0;
+		int sintonizador = 0;
+		float carga =0;
 		
-		if(request.getParameter("precioBase").trim() != null)
-			precioBase = Float.parseFloat(request.getParameter("precioBase").trim());
-		if(request.getParameter("color") != null)
-			color = request.getParameter("color");
-		if(request.getParameter("consumoEnergetico") != null)
-			consumoEnergetico = request.getParameter("consumoEnergetico");
-		if(request.getParameter("peso").trim() != null)
-			peso = request.getParameter("peso").trim();
-		if(request.getParameter("resolucion").trim() != null)
-			resolucion = request.getParameter("resolucion").trim();
-		if(request.getParameter("sintonizador") != null)
-			sintonizador =request.getParameter("sintonizador");
-		//String car = request.getParameter("carga").trim();
-		
-		
-		String query ="INSERT INTO electrodomestico(precioBase,color,consumoEnergetico,peso,resolucion,sintonizador,carga) VALUES ('"+precioBase+"','"+color+"','"+consumoEnergetico+"','"+peso+"','"+resolucion+"','"+sintonizador+"',null)";
-		Statement st;
-		try {
-			st = (Statement) Conexion.GetConnection().createStatement();
-			st.executeUpdate(query);
-			st.close();
-			Conexion.CloseConnection();		
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		try{
+			  // convert from String to float
+
+			  precioBase = Float.valueOf(request.getParameter("precioBase")).floatValue();
+			  peso = Float.parseFloat(request.getParameter("peso"));
+			  resolucion = Float.parseFloat(request.getParameter("resolucion"));
+			  sintonizador =Integer.parseInt(request.getParameter("sintonizador"));
+			  
+			  //Si es un lavarropa...	  
+			  carga = Float.parseFloat(request.getParameter("carga"));	
+
+		}catch(NumberFormatException e){
+			  // string passed in was not a number.  Deal with it appropriately.
+			}
+				
+		color = request.getParameter("color");
+		consumoEnergetico = request.getParameter("consumoEnergetico");
+	
+			String query ="INSERT INTO electrodomestico(precioBase,color,consumoEnergetico,peso,resolucion,sintonizador,carga) VALUES ('"+precioBase+"','"+color+"','"+consumoEnergetico+"','"+peso+"','"+resolucion+"','"+sintonizador+"','"+carga+"')";
+			Statement st;
+			try {
+				st = (Statement) Conexion.GetConnection().createStatement();
+				st.executeUpdate(query);
+				st.close();
+				Conexion.CloseConnection();		
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		request.getRequestDispatcher("/Alta.jsp").forward(request, response);
 
 	}

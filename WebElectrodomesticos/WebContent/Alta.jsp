@@ -30,6 +30,9 @@ function formLavarropa()
 	document.getElementById("lblSintonizador").style.visibility="hidden";	
 	document.getElementById("carga").style.visibility="visible";	
 	document.getElementById("lblCarga").style.visibility="visible";
+	//Limpio los campos del televisor
+	document.formAlta.resolucion.value = "";
+	document.formAlta.sintonizador.checked = 0;
 	}
 function formTelevision()
 {
@@ -39,12 +42,18 @@ function formTelevision()
 	document.getElementById("sintonizador").style.visibility="visible";	
 	document.getElementById("lblResolucion").style.visibility="visible";	
 	document.getElementById("lblSintonizador").style.visibility="visible";	
+	//Limpio los campos del lavarropas
+	document.formAlta.carga.value = "";
 	}
 function camposLlenos()
 {
 	var valido =true;
 	var mensaje="Los siguientes campos están vacios:\n";
+	var tipo = 2; //Lavarropa
 	
+	if(document.formAlta.tipo.selectedIndex == 0)
+		tipo = 1; //Televisor
+		
 	if(document.getElementById('precioBase').value == "")
 		{
 		valido = false;
@@ -57,28 +66,34 @@ function camposLlenos()
 		mensaje +="* peso\n";
 		}
 
-	if(document.getElementById('resolucion').value == "")
+	if(document.getElementById('resolucion').value == "" && tipo==1)
 		{
 		valido = false;
 		mensaje +="* resolución\n";
 		}
 
-	/*
-	if(document.getElementById('carga').value == "")
+	
+	if(document.getElementById('carga').value == "" && tipo==2)
 		{
 		valido = false;
 		mensaje +="* carga\n";
 		}
-	*/
+	
 	
 	if(!valido)
-		alert(mensaje);
+		{
+			alert(mensaje);
+			return false;
+		}
+
 	else
 		{
 		document.getElementById('precioBase').value ="";
 		document.getElementById('peso').value ="";
 		document.getElementById('resolucion').value ="";
 		document.getElementById('carga').value ="";
+		
+		return true;
 		}
 }
 
@@ -109,9 +124,13 @@ function soloNumeros(e)
 <h1 style=color:white>Alta Electrodomestico</h1>
 <div id="cuerpo">
 <div id="controles">
-<a href="#" onclick="formLavarropa()"><div id="btn1"><img src="Imagenes/lavarropa.png" alt="lavarropa" id="lavarropa"/></div></a>
-<a href="#" onclick="formTelevision()"><div id="btn2"><img src="Imagenes/televisor.png" alt="televisor" id="televisor" /></div></a>
 	<form method="post" action="Guardar" name="formAlta" id="formulario" >
+	<label>Tipo:
+	<SELECT NAME="tipo" SIZE=1> 
+	<OPTION VALUE="1" onclick="formTelevision()">Televisor</OPTION>
+	<OPTION VALUE="2" onclick="formLavarropa()">Lavarropa</OPTION>
+	</SELECT></label>
+	<br/>
 	<label>PrecioBase:<input type="text" name="precioBase" id="precioBase" onkeypress="return soloNumeros(event)"/></label><br/>
 	<label>Color:
 	<select id="color" name="color">
@@ -132,14 +151,15 @@ function soloNumeros(e)
 	</select></label><br/>
 	<label>Peso:<input type="text" name="peso" id="peso" onkeypress="return soloNumeros(event)"/></label><br/>
 	<label id="lblResolucion">Resolución:<input type="text" name="resolucion" id="resolucion" onkeypress="return soloNumeros(event)"/></label><br/>
-	<input type="checkbox" name="sintonizador" id="sintonizador"><label id="lblSintonizador">Sintonizador</label><br>
+	<input type="checkbox" name="sintonizador" id="sintonizador"><label id="lblSintonizador">Sintonizador</label><br/>
 	<label id="lblCarga" style="visibility:hidden">Carga:<input type="text" name="carga" id="carga" onkeypress="return soloNumeros(event)" style="visibility:hidden"/></label><br/>
 	<br />
-	<input id="btnEnviar" type="submit" name="submit" value="Guardar" onclick="camposLlenos()"/>
+	<br />
+	<input id="btnEnviar" type="submit" name="submit" value="Guardar" onclick="return camposLlenos()" />
 	<br />
 	<br /> 
 	</form>
-<p id="link"><a href="Principal.html">Menú principal</a></p>
+<p id="link">&nbsp; &nbsp;&nbsp;&nbsp;<a href="Principal.html">Menú principal</a></p>
 </div>
 </div>
 
