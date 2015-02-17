@@ -55,18 +55,16 @@ public class Guardar extends HttpServlet {
 		float carga =0;
 		
 		try{
-			  // convert from String to float
-
-			  precioBase = Float.valueOf(request.getParameter("precioBase")).floatValue();
+			
+			  //NO FUNCIONA EL PASAJE DE FLOATS DESDE EL JSP AL SEVLET.
+			  precioBase = Float.parseFloat(request.getParameter("precioBase"));
 			  peso = Float.parseFloat(request.getParameter("peso"));
 			  resolucion = Float.parseFloat(request.getParameter("resolucion"));
-			  sintonizador =Integer.parseInt(request.getParameter("sintonizador"));
-			  
-			  //Si es un lavarropa...	  
+			  sintonizador =Integer.parseInt(request.getParameter("sintonizador"));			  
 			  carga = Float.parseFloat(request.getParameter("carga"));	
 
 		}catch(NumberFormatException e){
-			  // string passed in was not a number.  Deal with it appropriately.
+			  
 			}
 				
 		color = request.getParameter("color");
@@ -78,7 +76,7 @@ public class Guardar extends HttpServlet {
 				st = (Statement) Conexion.GetConnection().createStatement();
 				st.executeUpdate(query);
 				st.close();
-				Conexion.CloseConnection();		
+				//Conexion.CloseConnection();		
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

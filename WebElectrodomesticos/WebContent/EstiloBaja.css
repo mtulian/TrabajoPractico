@@ -1,0 +1,40 @@
+*
+{
+margin:0;
+padding:0px;
+}
+body
+{
+background-image:url("Imagenes/brushed1.png");
+}
+#general
+{
+margin-top:200px;
+margin-left:200px;
+border-color:#000000;
+}
+#cuerpo
+{
+width: 977px;
+height:360px;
+background-color:#CCCCCC;
+line-heigt:40px;
+	
+}
+table
+{
+	color: black;
+	border-style:solid;
+	border-color:black;
+	margin: 0px auto;
+}
+#cuerpo #link
+{
+	text-align: center;
+	margin: 250px auto;
+}
+
+td
+{
+	text-align: center;
+}

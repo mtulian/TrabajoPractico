@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="estiloOpciones.css" />
+<link rel="stylesheet" type="text/css" href="EstiloAlta.css" />
 <script type="text/javascript">
 btnEnviar.addEventListener(MouseEvent.CLICK,camposLlenos);
 function carga() //Lleva el cursor al primer campo de texto.
@@ -101,7 +101,7 @@ function soloNumeros(e)
 {
 	key=e.KeyCode || e.which;
 	teclado= String.fromCharCode(key);
-	numero="0123456789";
+	numero="0123456789.";
 	especiales="8-37-38-46";
 	teclado_especial = false;
 	

@@ -29,4 +29,14 @@
     <servlet-name>Mostrar</servlet-name>
     <url-pattern>/Mostrar</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Baja</display-name>
+    <servlet-name>Baja</servlet-name>
+    <servlet-class>controlador.Baja</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Baja</servlet-name>
+    <url-pattern>/Baja</url-pattern>
+  </servlet-mapping>
 </web-app>
