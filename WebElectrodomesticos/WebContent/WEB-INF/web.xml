@@ -39,4 +39,14 @@
     <servlet-name>Baja</servlet-name>
     <url-pattern>/Baja</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Modificacion</display-name>
+    <servlet-name>Modificacion</servlet-name>
+    <servlet-class>controlador.Modificacion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Modificacion</servlet-name>
+    <url-pattern>/Modificacion</url-pattern>
+  </servlet-mapping>
 </web-app>

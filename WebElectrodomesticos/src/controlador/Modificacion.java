@@ -13,15 +13,15 @@ import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
 
 /**
- * Servlet implementation class Baja
+ * Servlet implementation class Modificacion
  */
-public class Baja extends HttpServlet {
+public class Modificacion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Baja() {
+    public Modificacion() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,6 +39,7 @@ public class Baja extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		
 		int ID = Integer.parseInt(request.getParameter("id"));
 		
 		Statement sta;
@@ -48,9 +49,14 @@ public class Baja extends HttpServlet {
 			ResultSet rs = (ResultSet) sta.executeQuery("SELECT * FROM electrodomestico WHERE id="+ID+"");
 			if(rs.next())
 			{
-				int dialogResult =JOptionPane.showConfirmDialog (null, "¿Está seguro que desea eliminar el electrodomestico?","Cuidado!", JOptionPane.YES_NO_OPTION);
-				if(dialogResult == JOptionPane.YES_OPTION)
-					sta.executeUpdate("DELETE FROM electrodomestico WHERE id="+ID+"");
+				request.getSession().setAttribute("id",rs.getInt("id"));
+				request.getSession().setAttribute("precioBase",rs.getFloat("precioBase"));
+				request.getSession().setAttribute("color",rs.getString("color"));
+				request.getSession().setAttribute("consumoEnergetico",rs.getString("consumoEnergetico"));
+				request.getSession().setAttribute("peso",rs.getFloat("peso"));
+				request.getSession().setAttribute("resolucion",rs.getFloat("resolucion"));
+				request.getSession().setAttribute("sintonizador",rs.getBoolean("sintonizador"));
+				request.getSession().setAttribute("carga",rs.getFloat("carga"));	
 			}
 			else
 				JOptionPane.showMessageDialog(null, "El Id ingresado es inexistente");
@@ -61,7 +67,8 @@ public class Baja extends HttpServlet {
 		e.printStackTrace();
 	}
 		
-		request.getRequestDispatcher("/Baja.jsp").forward(request, response);
+		request.getRequestDispatcher("/Modi.jsp").forward(request, response);
 	}
+
 
 }

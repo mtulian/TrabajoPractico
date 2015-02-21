@@ -18,13 +18,10 @@
 <link rel="stylesheet" type="text/css" href="EstiloBaja.css" />
 
 <script type="text/javascript">
-function Confirmacion()
-{
-	  var rc = confirm("¿Seguro que desea Eliminar?");
-      return rc;	
-}
+
 function camposLlenos()
 {
+		
 	var valido =true;
 	var mensaje="Ingrese un Id";
 		
@@ -66,12 +63,14 @@ function soloNumeros(e)
 <h1 style=color:white>Baja Electrodomestico</h1>
 
 <div id="cuerpo">
+<div id="buscador">
 	<form method="post" action="Baja" name="formBaja" id="formBaja">
 	<label>ID:<input type="text" name="id" id="id" onkeypress="return soloNumeros(event)"/></label>
-	<input id="btnBorrar" type="submit" name="submit" value="Borrar" onclick="return camposLlenos();return Confirmacion()" />
+	<input id="btnBorrar" type="submit" name="submit" value="Borrar" onclick="return camposLlenos()" />
 	<br/>
 	<br/>
 	</form>
+</div>
 <table id="miTabla" border="1">
 <tr>
 <td><strong>ID</strong></td>
@@ -93,10 +92,11 @@ function soloNumeros(e)
 			st = (Statement) Conexion.GetConnection().createStatement();
 			ResultSet rs = (ResultSet) st.executeQuery("SELECT * FROM electrodomestico");
 			
-			ArrayList<Electrodomestico> lista = new ArrayList<Electrodomestico>();
-			int i=0;
+			//ArrayList<Electrodomestico> lista = new ArrayList<Electrodomestico>();
+			
 			while(rs.next()) {
 				
+				/*
 				if(rs.getString("carga") ==null)
 				{
 					Television elec = new Television();
@@ -126,7 +126,8 @@ function soloNumeros(e)
 					elec.setPrecioBase(rs.getFloat("precioBase"));	
 					
 					lista.add(elec);
-				}				
+				}			
+				*/
 
 				out.println("<tr>");
 				out.println("<td>" + rs.getInt("id") + "</td>");
@@ -139,7 +140,6 @@ function soloNumeros(e)
 				out.println("<td>" + rs.getFloat("carga") + "</td>");
 				out.println("<td>" + "<input type=\"image\" src=\"Imagenes/deleteRow.png\"  name=\"borrar\" value=\"Borrar\" onclick=\"return confirm('¿Seguro que desea Eliminar?');\" />" + "</td>");
 				out.println("</tr>");
-				i++;
 				
 			} // end while
 		

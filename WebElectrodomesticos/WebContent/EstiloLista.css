@@ -16,7 +16,7 @@ border-color:#000000;
 #cuerpo
 {
 width: 977px;
-height:360px;
+height:500px;
 background-color:#CCCCCC;
 line-heigt:40px;
 	
@@ -33,4 +33,9 @@ table
 	text-align: center;
 	margin: 250px auto;
 }
+td
+{
+	text-align: center;
+}
+
 

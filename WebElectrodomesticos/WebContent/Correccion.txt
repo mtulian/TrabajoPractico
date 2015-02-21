@@ -5,8 +5,10 @@ Alta:
 
 Lista:
 *Centrar tabla en div=cuerpo.
-*Centrar valores de la tabla dentro de la fila.
 *Agregar busqueda por ID.
+
+Modificación:
+
 
 CSS:
 *Limpiar etiquetas no usadas.
